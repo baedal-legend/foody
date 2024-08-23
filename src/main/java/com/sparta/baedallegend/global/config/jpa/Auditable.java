@@ -1,4 +1,4 @@
-package com.sparta.baedallegend.global.config;
+package com.sparta.baedallegend.global.config.jpa;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
@@ -15,7 +15,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class Auditable {
-
     @CreatedBy
     @Column(nullable = false, updatable = false)
     private Long createdBy;
@@ -30,7 +29,11 @@ public abstract class Auditable {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    // TODO : Entity Delete event 발생 시 삭제 관련 메타데이터 처리를 위한 Custom Listener 구현 필요
     private Long deletedBy;
     private LocalDateTime deletedAt;
+
+    public void delete(Long currentUser) {
+        deletedBy = currentUser;
+        deletedAt = LocalDateTime.now();
+    }
 }
