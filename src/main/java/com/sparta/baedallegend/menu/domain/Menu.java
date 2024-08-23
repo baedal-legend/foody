@@ -26,5 +26,5 @@ public class Menu {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
-    // TODO 연관관계 매핑 필요
+    // TODO FK 연관관계 매핑 필요
 }
