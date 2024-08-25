@@ -18,8 +18,9 @@ public class Order {
     private UUID id;
 
     @Column(nullable = false)
-    private BigDecimal total_amount;
+    private BigDecimal totalAmount;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private OrderStatus status;
 
