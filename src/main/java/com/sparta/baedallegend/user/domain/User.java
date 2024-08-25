@@ -8,10 +8,16 @@ import lombok.NoArgsConstructor;
 @Getter
 @Table(
         name = "p_user",
-        uniqueConstraints = @UniqueConstraint(
-                name = "UK_USER_EMAIL",
-                columnNames = "email"
-        )
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "UK_USER_EMAIL",
+                        columnNames = "email"
+                ),
+                @UniqueConstraint(
+                        name = "UK_USER_NICKNAME",
+                        columnNames = "nickname"
+                )
+        }
 )
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -26,7 +32,7 @@ public class User {
     @Column(nullable = false, length = 45)
     private String name;
 
-    @Column(nullable = false, length = 45, unique = true)
+    @Column(nullable = false, length = 45)
     private String nickname;
 
     @Enumerated(EnumType.STRING)
