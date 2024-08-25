@@ -203,3 +203,9 @@ gradle-app.setting
 
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij+all,gradle,macos,windows
 plugin: 플러그 접속식의 전기 제품, 플러그인
+
+## docker postgreSQL volume
+db
+
+## docker compose .env
+.env

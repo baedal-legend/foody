@@ -1,0 +1,16 @@
+services:
+  foody-db:
+    image: postgres
+    container_name: foody_postgres
+    ports:
+      - ${EXPOSE_PORT}:${TARGET_PORT}
+    volumes:
+      - ./db/postgresql/conf.d:/bitnami/postgresql/conf
+      - ./db/postgresql/data:/bitnami/postgresql
+      - ./db/postgresql/initdb.d:/docker-entrypoint-initdb.d
+    env_file: .env
+    environment:
+      - TZ=Asia/Seoul
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${USER}
+      - POSTGRES_PASSWORD=${PASSWORD}
