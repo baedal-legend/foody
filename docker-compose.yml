@@ -5,8 +5,8 @@ services:
     ports:
       - ${EXPOSE_PORT}:${TARGET_PORT}
     volumes:
-      - ./db/postgresql/conf.d:/bitnami/postgresql/conf
-      - ./db/postgresql/data:/bitnami/postgresql
+      - ./db/postgresql/conf.d:/etc/postgresql/conf.d
+      - ./db/postgresql:/var/lib/postgresql
       - ./db/postgresql/initdb.d:/docker-entrypoint-initdb.d
     env_file: .env
     environment:
