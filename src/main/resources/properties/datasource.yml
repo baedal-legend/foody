@@ -1,0 +1,15 @@
+spring:
+  config.activate.on-profile: test
+  datasource:
+    url: jdbc:h2:mem:test_db;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE
+    username: sa
+    password:
+
+---
+spring:
+  config.activate.on-profile: local
+  datasource:
+    url: jdbc:postgresql://host.docker.internal:5432/foody
+    driver-class-name: org.postgresql.Driver
+    username: foody
+    password: foody

@@ -1,0 +1,18 @@
+spring:
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        default_batch_fetch_size: 1000
+---
+spring:
+  config.activate.on-profile: test
+  jpa:
+    database: postgresql
+    hibernate.ddl-auto: create-drop
+
+---
+spring:
+  config.activate.on-profile: local
+  jpa:
+    hibernate.ddl-auto: update
