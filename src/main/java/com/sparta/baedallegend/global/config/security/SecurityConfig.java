@@ -1,5 +1,6 @@
 package com.sparta.baedallegend.global.config.security;
 
+import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 import org.springframework.context.annotation.Bean;
@@ -22,6 +23,7 @@ public class SecurityConfig {
 			.sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
 
 			.authorizeHttpRequests(auth -> auth
+				.requestMatchers(POST, "/auth/sign-up").permitAll()
 				.anyRequest().authenticated()
 			)
 			.build();
