@@ -1,0 +1,16 @@
+###############################
+# Git Line Endings            #
+###############################
+
+* text=auto
+
+# CRLF for Windows files.
+*.{cmd,[cC][mM][dD]} text eol=crlf
+*.{bat,[bB][aA][tT]} text eol=crlf
+*.cs                 text eol=crlf diff=csharp
+
+# LF for Linux files.
+*.sh text eol=lf
+
+# Common files
+*.java   text eol=lf diff=java
