@@ -2,6 +2,8 @@ package com.sparta.baedallegend.shop.domain;
 
 import com.sparta.baedallegend.category.domain.Category;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,12 +25,17 @@ public class ShopCategory {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
 
-	@ManyToOne
-	@JoinColumn(name = "shop_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "shop_id",
+		nullable = false,
+		foreignKey = @ForeignKey(name = "FK_SHOP_CATEGORY_TO_SHOP"))
 	private Shop shop;
 
-	@ManyToOne
-	@JoinColumn(name = "category_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "category_id",
+		nullable = false,
+		foreignKey = @ForeignKey(name = "FK_SHOP_CATEGORY_TO_CATEGORY")
+	)
 	private Category category;
 
 	private ShopCategory(Shop shop, Category category) {

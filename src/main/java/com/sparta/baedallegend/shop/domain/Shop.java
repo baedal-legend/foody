@@ -6,6 +6,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -46,12 +48,19 @@ public class Shop {
 	@Column(nullable = false)
 	private boolean isPublic;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id",
+		nullable = false,
+		foreignKey = @ForeignKey(name = "FK_SHOP_TO_USER")
+	)
 	private User user;
 
-	@ManyToOne
-	@JoinColumn(name = "region_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(
+		name = "region_id",
+		nullable = false,
+		foreignKey = @ForeignKey(name = "FK_SHOP_TO_REGION")
+	)
 	private Region region;
 
 	public static Shop of(String name, String phoneNumber, String description, String address,
