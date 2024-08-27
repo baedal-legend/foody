@@ -9,7 +9,7 @@ spring:
 spring:
   config.activate.on-profile: local
   datasource:
-    url: jdbc:postgresql://host.docker.internal:5432/foody
+    url: jdbc:postgresql://localhost:5432/foody
     driver-class-name: org.postgresql.Driver
     username: foody
     password: foody
