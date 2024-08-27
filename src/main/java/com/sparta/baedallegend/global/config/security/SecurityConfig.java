@@ -24,6 +24,7 @@ public class SecurityConfig {
 
 			.authorizeHttpRequests(auth -> auth
 				.requestMatchers(POST, "/auth/sign-up", "/auth/sign-in").permitAll()
+				.requestMatchers(POST, "/shop/**").permitAll()
 				.anyRequest().authenticated()
 			)
 			.build();
