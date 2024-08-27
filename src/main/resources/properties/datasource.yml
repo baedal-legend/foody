@@ -1,9 +1,7 @@
 spring:
   config.activate.on-profile: test
   datasource:
-    url: jdbc:h2:mem:test_db;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE
-    username: sa
-    password:
+    driver-class-name: org.postgresql.Driver
 
 ---
 spring:
