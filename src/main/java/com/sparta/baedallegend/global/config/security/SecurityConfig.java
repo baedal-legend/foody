@@ -4,8 +4,6 @@ import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 import com.sparta.baedallegend.auth.filter.JwtFilter;
-import com.sparta.baedallegend.auth.service.AuthenticationService;
-import com.sparta.baedallegend.auth.utils.jwt.JwtProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,8 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-	private final AuthenticationService authenticationService;
-	private final JwtProperties jwtProperties;
+	private final JwtFilter jwtFilter;
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -31,20 +28,16 @@ public class SecurityConfig {
 			.headers(headers -> headers.frameOptions(FrameOptionsConfig::disable))
 			.sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
 
+			// TODO 권한 별 Endpoint 관리를 위한 Enum 정의
 			.authorizeHttpRequests(auth -> auth
 				.requestMatchers(POST, "/auth/sign-up", "/auth/sign-in").permitAll()
 				.requestMatchers(POST, "/shop/**").permitAll()
 				.anyRequest().authenticated()
 			)
 
-			.addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class)
+			.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
 
 			.build();
-	}
-
-	@Bean
-	public JwtFilter jwtFilter() {
-		return new JwtFilter(jwtProperties, authenticationService);
 	}
 
 }
