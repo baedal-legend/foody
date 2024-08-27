@@ -1,0 +1,15 @@
+POST http://localhost:8080/shop/1
+Content-Type: application/json
+
+{
+  "name": "마시도니",
+  "phoneNumber": "02-941-3969",
+  "description": "맛있는 제주흑돼지를 파는 마시도니입니다.",
+  "address": "서울 성북구 길음동",
+  "categoryIds": [
+    "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"
+  ],
+  "regionId": "9b12eb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"
+}
+
+###
