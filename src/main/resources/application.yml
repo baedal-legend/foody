@@ -1,6 +1,8 @@
 spring:
+  application.name: foody-app
   profiles.active: local
   config:
     import:
       - classpath:properties/datasource.yml
       - classpath:properties/jpa.yml
+      - classpath:properties/jwt.yml

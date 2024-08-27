@@ -1,0 +1,6 @@
+spring.config.activate.on-profile: local
+jwt:
+  audience: foody-client
+  expiration-minutes: 30
+  secret-key: local-foody-authenticate-secret-key
+---

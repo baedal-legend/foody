@@ -23,7 +23,7 @@ public class SecurityConfig {
 			.sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
 
 			.authorizeHttpRequests(auth -> auth
-				.requestMatchers(POST, "/auth/sign-up").permitAll()
+				.requestMatchers(POST, "/auth/sign-up", "/auth/sign-in").permitAll()
 				.requestMatchers(POST, "/shop/**").permitAll()
 				.anyRequest().authenticated()
 			)
