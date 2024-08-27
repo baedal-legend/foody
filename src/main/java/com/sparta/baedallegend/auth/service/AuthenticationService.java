@@ -22,7 +22,6 @@ public class AuthenticationService {
 
 	public String authenticate(SignInRequest signInRequest) {
 		FoodyPrincipal principal = verifyUser(signInRequest);
-
 		return tokenService.issueAccessToken(principal);
 	}
 
