@@ -70,5 +70,9 @@ public class User {
 		return password.getValue();
 	}
 
+	public String getRoleDetails() {
+		return role.getDescription();
+	}
+
 	// TODO : Auditor 사용을 위한 메타데이터 컬럼들이 구현되지 않았음
 }

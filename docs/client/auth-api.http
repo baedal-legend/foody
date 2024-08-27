@@ -1,0 +1,27 @@
+## 회원 가입 API
+POST http://localhost:8080/auth/sign-up
+Content-Type: application/json
+
+{
+  "email": "customer@foody.io",
+  "password": "password",
+  "name": "홍길동",
+  "nickname": "Red홍",
+  "signUpType": "CUSTOMER"
+}
+
+###
+
+## 로그인 API
+POST http://localhost:8080/auth/sign-in
+Content-Type: application/json
+
+{
+  "email": "customer@foody.io",
+  "password": "password"
+}
+> {%
+  client.global.set("access_token", response.headers.valueOf("Authorization"))
+%}
+
+###
