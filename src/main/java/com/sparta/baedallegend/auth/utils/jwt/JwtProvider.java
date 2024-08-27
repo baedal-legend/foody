@@ -1,6 +1,9 @@
 package com.sparta.baedallegend.auth.utils.jwt;
 
-import static com.sparta.baedallegend.auth.utils.jwt.SingingUtils.generateSigningKey;
+import static com.sparta.baedallegend.auth.utils.jwt.JwtUtils.EMAIL;
+import static com.sparta.baedallegend.auth.utils.jwt.JwtUtils.ID;
+import static com.sparta.baedallegend.auth.utils.jwt.JwtUtils.ROLE;
+import static com.sparta.baedallegend.auth.utils.jwt.JwtUtils.generateSigningKey;
 
 import com.sparta.baedallegend.auth.domain.FoodyPrincipal;
 import io.jsonwebtoken.Jwts;
@@ -11,8 +14,6 @@ import javax.crypto.SecretKey;
 
 public class JwtProvider {
 
-	private static final String ID = "id";
-	private static final String ROLE = "role";
 
 	public static String create(
 		JwtProperties jwtProperties,
@@ -29,6 +30,7 @@ public class JwtProvider {
 			.and()
 			.claim(ID, principal.id())
 			.claim(ROLE, principal.role())
+			.claim(EMAIL, principal.email())
 			.expiration(expirationDate)
 			.signWith(signingKey)
 			.compact();

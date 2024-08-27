@@ -6,7 +6,11 @@ import io.jsonwebtoken.security.Keys;
 import java.util.Base64;
 import javax.crypto.SecretKey;
 
-public class SingingUtils {
+public class JwtUtils {
+
+	public static final String ID = "id";
+	public static final String ROLE = "role";
+	public static final String EMAIL = "email";
 
 	public static SecretKey generateSigningKey(String plainSecretKey) {
 		byte[] base64SecretKey = encodeToBase64(plainSecretKey);
