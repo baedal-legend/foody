@@ -11,7 +11,6 @@ import static com.sparta.baedallegend.auth.utils.jwt.JwtUtils.generateSigningKey
 
 import com.sparta.baedallegend.auth.domain.FoodyPrincipal;
 import com.sparta.baedallegend.auth.exception.AuthException;
-import com.sparta.baedallegend.user.domain.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -60,9 +59,9 @@ public class JwtResolver {
 	private static FoodyPrincipal extractPrincipal(Claims claims) {
 		Long id = claims.get(ID, Long.class);
 		String email = claims.get(EMAIL, String.class);
-		Role role = claims.get(ROLE, Role.class);
+		String roleDetails = claims.get(ROLE, String.class);
 
-		return FoodyPrincipal.of(id, email, role);
+		return FoodyPrincipal.of(id, email, roleDetails);
 	}
 
 }
