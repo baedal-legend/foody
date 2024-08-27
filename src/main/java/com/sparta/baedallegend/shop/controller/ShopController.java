@@ -5,6 +5,7 @@ import com.sparta.baedallegend.shop.service.ShopService;
 import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +19,8 @@ public class ShopController {
 
 	private final ShopService shopService;
 
-	@PostMapping
-	public ResponseEntity<Void> create(Long userId,
+	@PostMapping("/{userId}")
+	public ResponseEntity<Void> create(@PathVariable("userId") Long userId,
 		@RequestBody CreateShopRequest createShopRequest) {
 
 		final String shopId = shopService.create(userId, createShopRequest);
