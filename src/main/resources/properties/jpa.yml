@@ -8,8 +8,7 @@ spring:
 spring:
   config.activate.on-profile: test
   jpa:
-    database: postgresql
-    hibernate.ddl-auto: create-drop
+    hibernate.ddl-auto: create
 
 ---
 spring:
