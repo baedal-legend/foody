@@ -1,11 +1,17 @@
 package com.sparta.baedallegend.shop.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -13,26 +19,29 @@ import java.util.UUID;
 @Table(name = "p_shop")
 public class Shop {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.UUID)
+	private UUID id;
 
-    @Column(nullable = false)
-    private String name;
+	@Column(nullable = false)
+	private String name;
 
-    @Column(nullable = false, name = "phone_number")
-    private String phoneNumber;
+	@Column(nullable = false, name = "phone_number")
+	private String phoneNumber;
 
-    @Column(nullable = false)
-    private String description;
+	@Column(nullable = false)
+	private String description;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private ShopStatus status;
+	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
+	private ShopStatus status;
 
-    @Column(nullable = false)
-    private String address;
+	@Column(nullable = false)
+	private String address;
 
-    // TODO User, Category, Region 연관관계 필요
+	@Column(nullable = false)
+	private boolean isPublic;
+
+	// TODO User, Category, Region 연관관계 필요
 
 }

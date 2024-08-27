@@ -8,5 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class ShopController {
 
-    private final ShopService shopService;
+	private final ShopService shopService;
+
 }
