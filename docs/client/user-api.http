@@ -1,0 +1,12 @@
+POST http://localhost:8080/auth/sign-up
+Content-Type: application/json
+
+{
+  "email": "customer@foody.io",
+  "password": "password",
+  "name": "홍길동",
+  "nickname": "Red홍",
+  "signUpType": "CUSTOMER"
+}
+
+###
