@@ -1,12 +1,49 @@
 package com.sparta.baedallegend.shop.service;
 
+import com.sparta.baedallegend.category.domain.Category;
+import com.sparta.baedallegend.category.repo.CategoryRepo;
+import com.sparta.baedallegend.shop.controller.dto.CreateShopRequest;
+import com.sparta.baedallegend.shop.domain.Shop;
+import com.sparta.baedallegend.shop.domain.ShopCategory;
+import com.sparta.baedallegend.shop.repo.ShopCategoryRepo;
 import com.sparta.baedallegend.shop.repo.ShopRepo;
+import com.sparta.baedallegend.user.domain.User;
+import com.sparta.baedallegend.user.repo.UserRepo;
+import java.util.List;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class ShopService {
 
-    private final ShopRepo shopRepo;
+	private final ShopRepo shopRepo;
+	private final UserRepo userRepo;
+	private final CategoryRepo categoryRepo;
+	private final ShopCategoryRepo shopCategoryRepo;
+
+	@Transactional
+	public String create(Long userId, CreateShopRequest createShopRequest) {
+		User user = userRepo.findById(userId).orElseThrow(() ->
+			new IllegalArgumentException("존재하지 않는 사용자입니다."));
+
+		Shop shop = createShopRequest.toEntity(user);
+		Shop createdShop = shopRepo.save(shop);
+
+		// 카테고리 설정
+		List<String> categoryIds = createShopRequest.getCategoryIds();
+		for (String categoryId : categoryIds) {
+			Category category = categoryRepo.findById(UUID.fromString(categoryId)).orElseThrow(() ->
+				new IllegalArgumentException("존재하지 않는 카테고리입니다."));
+
+			ShopCategory shopCategory = ShopCategory.of(shop, category);
+			shopCategoryRepo.save(shopCategory);
+		}
+
+		return createdShop.getId().toString();
+	}
+
 }

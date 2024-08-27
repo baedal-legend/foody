@@ -31,4 +31,13 @@ public class ShopCategory {
 	@JoinColumn(name = "category_id")
 	private Category category;
 
+	private ShopCategory(Shop shop, Category category) {
+		this.shop = shop;
+		this.category = category;
+	}
+
+	public static ShopCategory of(Shop shop, Category category) {
+		return new ShopCategory(shop, category);
+	}
+
 }

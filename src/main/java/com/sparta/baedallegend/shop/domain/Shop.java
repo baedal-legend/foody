@@ -49,6 +49,21 @@ public class Shop {
 	@JoinColumn(name = "user_id")
 	private User user;
 
+	public static Shop of(String name, String phoneNumber, String description, String address,
+		User user) {
+		return new Shop(name, phoneNumber, description, address, user);
+	}
+
+	private Shop(String name, String phoneNumber, String description, String address, User user) {
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+		this.description = description;
+		this.status = ShopStatus.CLOSED;
+		this.address = address;
+		this.isPublic = true;
+		this.user = user;
+	}
+
 	// TODO Region 연관관계 필요
 
 }
