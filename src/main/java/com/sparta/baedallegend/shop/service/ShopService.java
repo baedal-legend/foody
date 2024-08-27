@@ -51,6 +51,6 @@ public class ShopService {
 		}
 
 		return createdShop.getId().toString();
-	}
+	} // TODO CustomException 활용하여 수정 필요
 
 }
