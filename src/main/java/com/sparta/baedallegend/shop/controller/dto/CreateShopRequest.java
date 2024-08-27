@@ -1,5 +1,6 @@
 package com.sparta.baedallegend.shop.controller.dto;
 
+import com.sparta.baedallegend.region.domain.Region;
 import com.sparta.baedallegend.shop.domain.Shop;
 import com.sparta.baedallegend.user.domain.User;
 import java.util.List;
@@ -15,8 +16,8 @@ public class CreateShopRequest {
 	private List<String> categoryIds;
 	private String regionId;
 
-	public Shop toEntity(User user) {
-		return Shop.of(name, phoneNumber, description, address, user);
+	public Shop toEntity(User user, Region region) {
+		return Shop.of(name, phoneNumber, description, address, user, region);
 	}
 
 }

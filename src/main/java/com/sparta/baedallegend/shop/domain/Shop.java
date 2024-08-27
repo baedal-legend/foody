@@ -1,5 +1,6 @@
 package com.sparta.baedallegend.shop.domain;
 
+import com.sparta.baedallegend.region.domain.Region;
 import com.sparta.baedallegend.user.domain.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -49,12 +50,17 @@ public class Shop {
 	@JoinColumn(name = "user_id")
 	private User user;
 
+	@ManyToOne
+	@JoinColumn(name = "region_id")
+	private Region region;
+
 	public static Shop of(String name, String phoneNumber, String description, String address,
-		User user) {
-		return new Shop(name, phoneNumber, description, address, user);
+		User user, Region region) {
+		return new Shop(name, phoneNumber, description, address, user, region);
 	}
 
-	private Shop(String name, String phoneNumber, String description, String address, User user) {
+	private Shop(String name, String phoneNumber, String description, String address, User user,
+		Region region) {
 		this.name = name;
 		this.phoneNumber = phoneNumber;
 		this.description = description;
@@ -62,8 +68,7 @@ public class Shop {
 		this.address = address;
 		this.isPublic = true;
 		this.user = user;
+		this.region = region;
 	}
-
-	// TODO Region 연관관계 필요
 
 }
