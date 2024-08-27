@@ -1,11 +1,18 @@
 package com.sparta.baedallegend.menu.domain;
 
-import jakarta.persistence.*;
+import com.sparta.baedallegend.shop.domain.Shop;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -13,18 +20,22 @@ import java.util.UUID;
 @Table(name = "p_menu")
 public class Menu {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.UUID)
+	private UUID id;
 
-    @Column(nullable = false, length = 100)
-    private String name;
+	@Column(nullable = false, length = 100)
+	private String name;
 
-    @Column(nullable = false)
-    private int price;
+	@Column(nullable = false)
+	private int price;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String description;
+	@Column(nullable = false, columnDefinition = "TEXT")
+	private String description;
 
-    // TODO FK 연관관계 매핑 필요
+	// 가게 와 메뉴 연관관계 설정
+	@ManyToOne
+	@JoinColumn(name = "shop_id")
+	private Shop shop;
+
 }
