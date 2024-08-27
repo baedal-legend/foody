@@ -66,5 +66,9 @@ public class User {
 		return new User(email, name, nickname, encodedPassword, Role.valueOf(signUpType.name()));
 	}
 
+	public String getPassword() {
+		return password.getValue();
+	}
+
 	// TODO : Auditor 사용을 위한 메타데이터 컬럼들이 구현되지 않았음
 }
