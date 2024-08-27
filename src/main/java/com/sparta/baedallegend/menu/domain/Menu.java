@@ -3,6 +3,8 @@ package com.sparta.baedallegend.menu.domain;
 import com.sparta.baedallegend.shop.domain.Shop;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,7 +35,13 @@ public class Menu {
 	@Column(nullable = false, columnDefinition = "TEXT")
 	private String description;
 
-	// 가게 와 메뉴 연관관계 설정
+	@Column(nullable = false)
+	private boolean isPublic;
+
+	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
+	private MenuStatus menuStatus;
+
 	@ManyToOne
 	@JoinColumn(name = "shop_id")
 	private Shop shop;
