@@ -46,4 +46,19 @@ public class Menu {
 	@JoinColumn(name = "shop_id")
 	private Shop shop;
 
+	private Menu(String name, int price, String description,
+		MenuStatus menuStatus, Shop shop) {
+		this.name = name;
+		this.price = price;
+		this.description = description;
+		this.isPublic = true;
+		this.menuStatus = menuStatus;
+		this.shop = shop;
+	}
+
+	public static Menu of(String name, int price, String description, MenuStatus menuStatus,
+		Shop shop) {
+		return new Menu(name, price, description, menuStatus, shop);
+	}
+
 }
