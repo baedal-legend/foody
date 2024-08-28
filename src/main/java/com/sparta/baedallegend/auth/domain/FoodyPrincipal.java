@@ -1,15 +1,13 @@
 package com.sparta.baedallegend.auth.domain;
 
-import com.sparta.baedallegend.user.domain.Role;
-
 public record FoodyPrincipal(
 	Long id,
 	String email,
-	Role role
+	String roleDetails
 ) {
 
-	public static FoodyPrincipal of(Long id, String email, Role role) {
-		return new FoodyPrincipal(id, email, role);
+	public static FoodyPrincipal of(Long id, String email, String roleDetails) {
+		return new FoodyPrincipal(id, email, roleDetails);
 	}
 
 }

@@ -29,7 +29,7 @@ public class AuthenticationService {
 		User user = loadUserByUsername(signInRequest.email());
 		checkPasswordIsMatched(signInRequest, user);
 
-		return FoodyPrincipal.of(user.getId(), user.getEmail(), user.getRole());
+		return FoodyPrincipal.of(user.getId(), user.getEmail(), user.getRoleDetails());
 	}
 
 	public User loadUserByUsername(String email) {
