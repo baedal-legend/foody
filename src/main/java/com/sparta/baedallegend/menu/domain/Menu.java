@@ -5,6 +5,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -42,8 +44,12 @@ public class Menu {
 	@Enumerated(EnumType.STRING)
 	private MenuStatus menuStatus;
 
-	@ManyToOne
-	@JoinColumn(name = "shop_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(
+		name = "shop_id",
+		nullable = false,
+		foreignKey = @ForeignKey(name = "FK_MENU_TO_SHOP")
+	)
 	private Shop shop;
 
 	public static Menu of(String name, int price, String description, MenuStatus menuStatus,
