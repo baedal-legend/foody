@@ -6,7 +6,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class UriComponentUtils {
 
 	public static <T> URI makeUrl(String baseUri, T path) {
-
 		return UriComponentsBuilder
 			.fromUriString(baseUri)
 			.buildAndExpand(path)
