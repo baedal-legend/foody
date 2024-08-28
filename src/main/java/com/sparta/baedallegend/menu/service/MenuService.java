@@ -18,8 +18,8 @@ public class MenuService {
 	private final ShopRepo shopRepo;
 
 	@Transactional
-	public String create(UUID shopId, CreateMenuRequest createMenuRequest) {
-
+	public String create(CreateMenuRequest createMenuRequest) {
+		UUID shopId = createMenuRequest.getShop_id();
 		Shop shop = shopRepo.findById(shopId).orElseThrow(() ->
 			new IllegalArgumentException("존재하지 않는 가게입니다."));
 		// 확인 후 새로운 메뉴 추가
