@@ -1,5 +1,6 @@
 package com.sparta.baedallegend.global.config.security;
 
+import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
@@ -32,6 +33,9 @@ public class SecurityConfig {
 			.authorizeHttpRequests(auth -> auth
 				.requestMatchers(POST, "/auth/sign-up", "/auth/sign-in").permitAll()
 				.requestMatchers(POST, "/shop/**").permitAll()
+				.requestMatchers(POST, "/menu/**").permitAll()
+				.requestMatchers(GET, "/menu/**").permitAll()
+				
 				.anyRequest().authenticated()
 			)
 

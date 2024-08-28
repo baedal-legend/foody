@@ -1,0 +1,12 @@
+## 메뉴 등록 API
+POST http://localhost:8080/menu
+//
+Content-Type: application/json
+
+{
+  "shop_id": "9b12eb4d-3b7d-4bad-9bdd-1b0d7b3dca6d",
+  "name": "김밥 라면 세트",
+  "price": 6000,
+  "description": "김밥과 라면을 같이 먹을 때 느끼는 행복을 느껴보세요",
+  "menuStatus": "ON_SALE"
+}
