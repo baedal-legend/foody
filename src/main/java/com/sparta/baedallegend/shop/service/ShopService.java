@@ -13,6 +13,8 @@ import com.sparta.baedallegend.shop.controller.dto.ReadOneShopRequest;
 import com.sparta.baedallegend.shop.controller.dto.ReadOneShopResponse;
 import com.sparta.baedallegend.shop.domain.Shop;
 import com.sparta.baedallegend.shop.domain.ShopCategory;
+import com.sparta.baedallegend.shop.exception.ShopErrorCode;
+import com.sparta.baedallegend.shop.exception.ShopException;
 import com.sparta.baedallegend.shop.repo.ShopCategoryRepo;
 import com.sparta.baedallegend.shop.repo.ShopRepo;
 import com.sparta.baedallegend.user.domain.User;
@@ -72,11 +74,11 @@ public class ShopService {
 			.collect(Collectors.toList());
 
 		return new PageImpl<>(findAllShopResponses, pageRequest, shops.getSize());
-	} // TODO 페이징 처리 필요
+	}
 
 	public ReadOneShopResponse readOne(ReadOneShopRequest request) {
-		Shop shop = shopRepo.findById(UUID.fromString(request.getShopId())).orElseThrow(() ->
-			new IllegalArgumentException("존재하지 않는 상점입니다."));
+		Shop shop = shopRepo.findById(UUID.fromString(request.getShopId()))
+			.orElseThrow(() -> new ShopException(ShopErrorCode.NOT_EXIST, request.getShopId()));
 
 		List<Menu> menus = menuRepo.findByShopAndIsPublicTrue(shop);
 
