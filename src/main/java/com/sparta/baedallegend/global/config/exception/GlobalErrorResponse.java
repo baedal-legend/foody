@@ -19,7 +19,7 @@ public record GlobalErrorResponse(
 			request.getMethod(),
 			request.getRequestURI(),
 			errorCode.name(),
-			errorCode.name(),
+			errorCode.getMessage(),
 			LocalDateTime.now()
 		);
 	}
