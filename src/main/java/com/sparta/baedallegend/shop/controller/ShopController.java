@@ -2,7 +2,6 @@ package com.sparta.baedallegend.shop.controller;
 
 import com.sparta.baedallegend.shop.controller.dto.CreateShopRequest;
 import com.sparta.baedallegend.shop.controller.dto.FindAllShopResponse;
-import com.sparta.baedallegend.shop.controller.dto.ReadOneShopRequest;
 import com.sparta.baedallegend.shop.controller.dto.ReadOneShopResponse;
 import com.sparta.baedallegend.shop.service.ShopService;
 import java.net.URI;
@@ -49,9 +48,10 @@ public class ShopController {
 		return ResponseEntity.ok().body(responses);
 	}
 
-	@GetMapping("/details")
-	public ResponseEntity<ReadOneShopResponse> readOne(@RequestBody ReadOneShopRequest request1) {
-		ReadOneShopResponse response = shopService.readOne(request1);
+	@GetMapping("/{shopId}")
+	public ResponseEntity<ReadOneShopResponse> readOne(
+		@PathVariable(name = "shopId") String shopId) {
+		ReadOneShopResponse response = shopService.readOne(shopId);
 		return ResponseEntity.ok().body(response);
 	}
 

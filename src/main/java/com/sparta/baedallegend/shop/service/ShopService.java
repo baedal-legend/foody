@@ -9,7 +9,6 @@ import com.sparta.baedallegend.region.repo.RegionRepo;
 import com.sparta.baedallegend.shop.controller.dto.CreateShopRequest;
 import com.sparta.baedallegend.shop.controller.dto.FindAllShopResponse;
 import com.sparta.baedallegend.shop.controller.dto.ReadOneShopMenuResponse;
-import com.sparta.baedallegend.shop.controller.dto.ReadOneShopRequest;
 import com.sparta.baedallegend.shop.controller.dto.ReadOneShopResponse;
 import com.sparta.baedallegend.shop.domain.Shop;
 import com.sparta.baedallegend.shop.domain.ShopCategory;
@@ -76,9 +75,9 @@ public class ShopService {
 		return new PageImpl<>(findAllShopResponses, pageRequest, shops.getSize());
 	}
 
-	public ReadOneShopResponse readOne(ReadOneShopRequest request) {
-		Shop shop = shopRepo.findById(UUID.fromString(request.getShopId()))
-			.orElseThrow(() -> new ShopException(ShopErrorCode.NOT_EXIST, request.getShopId()));
+	public ReadOneShopResponse readOne(String shopId) {
+		Shop shop = shopRepo.findById(UUID.fromString(shopId))
+			.orElseThrow(() -> new ShopException(ShopErrorCode.NOT_EXIST, shopId));
 
 		List<Menu> menus = menuRepo.findByShopAndIsPublicTrue(shop);
 
