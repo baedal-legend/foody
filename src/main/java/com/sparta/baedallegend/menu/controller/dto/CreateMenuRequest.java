@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreateMenuRequest {
 
-	private UUID shop_id;
+	private UUID shopId;
 	private String name;
 	private int price;
 	private String description;
