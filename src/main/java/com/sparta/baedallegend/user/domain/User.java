@@ -1,5 +1,7 @@
 package com.sparta.baedallegend.user.domain;
 
+import static com.sparta.baedallegend.global.config.jpa.CommonAuditFields.DELETED_FALSE;
+
 import com.sparta.baedallegend.auth.controller.model.SignUpType;
 import com.sparta.baedallegend.user.domain.auditor.UserAuditable;
 import com.sparta.baedallegend.user.domain.wrap.Password;
@@ -17,6 +19,7 @@ import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SQLRestriction;
 
 @Getter
 @Table(
@@ -28,6 +31,7 @@ import lombok.NoArgsConstructor;
 )
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@SQLRestriction(DELETED_FALSE)
 public class User extends UserAuditable {
 
 	@Id
@@ -49,10 +53,6 @@ public class User extends UserAuditable {
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 45)
 	private Role role;
-
-	private Long createdBy;
-
-	private LocalDateTime createdAt;
 
 	public User(String email, String name, String nickname, Password password, Role role) {
 		this.email = email;
@@ -85,5 +85,4 @@ public class User extends UserAuditable {
 		return role.getDescription();
 	}
 
-	// TODO : Auditor 사용을 위한 메타데이터 컬럼들이 구현되지 않았음
 }

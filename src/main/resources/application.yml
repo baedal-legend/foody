@@ -6,3 +6,4 @@ spring:
       - classpath:properties/datasource.yml
       - classpath:properties/jpa.yml
       - classpath:properties/jwt.yml
+      - classpath:properties/logging.yml

@@ -33,10 +33,11 @@ public class GlobalExceptionHandler {
 		GlobalErrorCode errorCode = GlobalErrorCode.valueOf(exception);
 		GlobalErrorResponse errorResponse = GlobalErrorResponse.of(
 			request,
-			errorCode);
+			errorCode
+		);
 
 		log.error(errorResponse.toString());
-		
+
 		return ResponseEntity.status(errorCode.status)
 			.body(errorResponse);
 	}

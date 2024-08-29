@@ -2,6 +2,7 @@ package com.sparta.baedallegend.base;
 
 import com.github.gavlyukovskiy.boot.jdbc.decorator.DataSourceDecoratorAutoConfiguration;
 import com.sparta.baedallegend.config.P6spySqlFormatConfig;
+import com.sparta.baedallegend.global.config.jpa.JpaConfig;
 import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
@@ -15,7 +16,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 @Testcontainers
 @DataJpaTest(showSql = false)
-@Import(P6spySqlFormatConfig.class)
+@Import({P6spySqlFormatConfig.class, JpaConfig.class})
 @ImportAutoConfiguration(DataSourceDecoratorAutoConfiguration.class)
 public abstract class JpaTestBase extends TestBase {
 
