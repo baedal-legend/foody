@@ -50,10 +50,10 @@ class UserRepoTest extends JpaTestBase {
 	@DisplayName("회원 삭제")
 	void delete() {
 		User given = userRepo.save(generateUserFixture());
-		flushAndClear();
 
 		// When
-		userRepo.deleteById(given.getId());
+		given.delete();
+		flushAndClear();
 
 		// Then
 		assertThatExceptionOfType(NoSuchElementException.class)
