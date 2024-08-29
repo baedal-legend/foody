@@ -16,3 +16,12 @@ Content-Type: application/json
 ### Shop 전체 조회 API
 GET http://localhost:8080/shop?page=0&size=2
 Authorization: Bearer {{access_token}}
+
+### Shop 단일 조회 API
+GET http://localhost:8080/shop/details
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+
+{
+  "shopId": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3acb4"
+}
