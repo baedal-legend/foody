@@ -1,22 +1,6 @@
-## 회원 가입 API
-POST http://localhost:8080/auth/sign-up
+## 마이 페이지 API
+GET http://localhost:8080/user/me
 Content-Type: application/json
-
-{
-  "email": "customer@foody.io",
-  "password": "password",
-  "name": "홍길동",
-  "nickname": "Red홍",
-  "signUpType": "CUSTOMER"
-}
+Authorization: Bearer {{access_token}}
 
 ###
-
-## 로그인 API
-POST http://localhost:8080/auth/sign-in
-Content-Type: application/json
-
-{
-  "email": "customer@foody.io",
-  "password": "password"
-}

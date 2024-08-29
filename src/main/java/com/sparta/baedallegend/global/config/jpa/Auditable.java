@@ -7,33 +7,21 @@ import java.time.LocalDateTime;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class Auditable {
-    @CreatedBy
-    @Column(nullable = false, updatable = false)
-    private Long createdBy;
 
-    @CreatedDate
-    @Column(nullable = false)
-    private LocalDateTime createdAt;
+	@CreatedBy
+	@Column(nullable = false, updatable = false)
+	protected Long createdBy;
 
-    @LastModifiedBy
-    private Long updatedBy;
+	@CreatedDate
+	@Column(nullable = false, updatable = false)
+	private LocalDateTime createdAt;
+	
+	protected CommonAuditFields auditableFields;
 
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
-
-    private Long deletedBy;
-    private LocalDateTime deletedAt;
-
-    public void delete(Long currentUser) {
-        deletedBy = currentUser;
-        deletedAt = LocalDateTime.now();
-    }
 }

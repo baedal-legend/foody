@@ -5,6 +5,7 @@ import com.sparta.baedallegend.category.repo.CategoryRepo;
 import com.sparta.baedallegend.region.domain.Region;
 import com.sparta.baedallegend.region.repo.RegionRepo;
 import com.sparta.baedallegend.shop.controller.dto.CreateShopRequest;
+import com.sparta.baedallegend.shop.controller.dto.FindAllShopResponse;
 import com.sparta.baedallegend.shop.domain.Shop;
 import com.sparta.baedallegend.shop.domain.ShopCategory;
 import com.sparta.baedallegend.shop.repo.ShopCategoryRepo;
@@ -13,7 +14,11 @@ import com.sparta.baedallegend.user.domain.User;
 import com.sparta.baedallegend.user.repo.UserRepo;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,5 +57,15 @@ public class ShopService {
 
 		return createdShop.getId().toString();
 	} // TODO CustomException 활용하여 수정 필요
+
+	public Page<FindAllShopResponse> findAll(PageRequest pageRequest) {
+		Page<Shop> shops = shopRepo.findByIsPublicTrue(pageRequest);
+
+		List<FindAllShopResponse> findAllShopResponses = shops.stream()
+			.map(FindAllShopResponse::from)
+			.collect(Collectors.toList());
+
+		return new PageImpl<>(findAllShopResponses, pageRequest, shops.getSize());
+	} // TODO 페이징 처리 필요
 
 }

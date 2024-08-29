@@ -1,3 +1,4 @@
+### Shop 생성 API
 POST http://localhost:8080/shop/1
 Content-Type: application/json
 
@@ -12,4 +13,6 @@ Content-Type: application/json
   "regionId": "9b12eb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"
 }
 
-###
+### Shop 전체 조회 API
+GET http://localhost:8080/shop?page=0&size=2
+Authorization: Bearer {{access_token}}

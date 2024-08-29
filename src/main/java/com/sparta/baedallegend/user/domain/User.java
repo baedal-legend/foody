@@ -1,6 +1,7 @@
 package com.sparta.baedallegend.user.domain;
 
 import com.sparta.baedallegend.auth.controller.model.SignUpType;
+import com.sparta.baedallegend.user.domain.auditor.UserAuditable;
 import com.sparta.baedallegend.user.domain.wrap.Password;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
@@ -12,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +28,7 @@ import lombok.NoArgsConstructor;
 )
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User {
+public class User extends UserAuditable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,6 +50,10 @@ public class User {
 	@Column(nullable = false, length = 45)
 	private Role role;
 
+	private Long createdBy;
+
+	private LocalDateTime createdAt;
+
 	public User(String email, String name, String nickname, Password password, Role role) {
 		this.email = email;
 		this.name = name;
@@ -66,8 +72,17 @@ public class User {
 		return new User(email, name, nickname, encodedPassword, Role.valueOf(signUpType.name()));
 	}
 
+	public void applyUserCreated(Long id) {
+		createdBy = id;
+		createdAt = LocalDateTime.now();
+	}
+
 	public String getPassword() {
 		return password.getValue();
+	}
+
+	public String getRoleDetails() {
+		return role.getDescription();
 	}
 
 	// TODO : Auditor 사용을 위한 메타데이터 컬럼들이 구현되지 않았음

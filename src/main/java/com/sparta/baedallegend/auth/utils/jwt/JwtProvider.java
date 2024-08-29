@@ -29,7 +29,7 @@ public class JwtProvider {
 			.audience().add(jwtProperties.audience())
 			.and()
 			.claim(ID, principal.id())
-			.claim(ROLE, principal.role())
+			.claim(ROLE, principal.roleDetails())
 			.claim(EMAIL, principal.email())
 			.expiration(expirationDate)
 			.signWith(signingKey)

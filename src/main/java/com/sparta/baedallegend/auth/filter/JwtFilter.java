@@ -80,8 +80,8 @@ public class JwtFilter extends OncePerRequestFilter {
 	private static UsernamePasswordAuthenticationToken createUsernamePasswordToken(
 		FoodyPrincipal principal
 	) {
-		GrantedAuthority authority = new SimpleGrantedAuthority(principal.role().name());
-		
+		GrantedAuthority authority = new SimpleGrantedAuthority(principal.roleDetails());
+
 		return new UsernamePasswordAuthenticationToken(
 			principal.id(),
 			null,
