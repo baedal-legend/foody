@@ -25,4 +25,10 @@ public class UserService {
 			.orElseThrow(() -> new UserException(UserErrorCode.NOT_EXIST, id));
 	}
 
+	@Transactional
+	public void deleteUser(Long id) {
+		User user = findUser(id);
+		user.delete();
+	}
+
 }
