@@ -19,6 +19,7 @@ public class CustomerCreateService implements CreateUserService {
 	private final PasswordEncoder passwordEncoder;
 
 	@Override
+	@Transactional
 	public Long createUser(SignUpRequest signUpRequest) {
 		Password encodedPassword = encryptPassword(signUpRequest.password());
 		User savedUser = saveUser(signUpRequest.toEntity(encodedPassword));
@@ -26,7 +27,6 @@ public class CustomerCreateService implements CreateUserService {
 		return savedUser.getId();
 	}
 
-	@Transactional
 	public User saveUser(User user) {
 		entityManager.persist(user);
 		entityManager.flush();
