@@ -50,8 +50,8 @@ public class ShopController {
 	}
 
 	@GetMapping("/details")
-	public ResponseEntity<ReadOneShopResponse> readOne(@RequestBody ReadOneShopRequest request) {
-		ReadOneShopResponse response = shopService.readOne(request);
+	public ResponseEntity<ReadOneShopResponse> readOne(@RequestBody ReadOneShopRequest request1) {
+		ReadOneShopResponse response = shopService.readOne(request1);
 		return ResponseEntity.ok().body(response);
 	}
 
