@@ -1,13 +1,19 @@
 package com.sparta.baedallegend.global.config.jpa;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
+import lombok.Getter;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-@Embeddable
+@Getter
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public abstract class CommonAuditFields {
+
+	public static final String DELETED_FALSE = "is_deleted = false";
 
 	@LastModifiedBy
 	private Long updatedBy;
@@ -15,15 +21,10 @@ public abstract class CommonAuditFields {
 	@LastModifiedDate
 	private LocalDateTime updatedAt;
 
-	@Column(updatable = false)
-	private Long deletedBy;
+	private boolean isDeleted = false;
 
-	@Column(updatable = false)
-	private LocalDateTime deletedAt;
-
-	public void delete(Long currentUser) {
-		deletedBy = currentUser;
-		deletedAt = LocalDateTime.now();
+	public void delete() {
+		isDeleted = true;
 	}
 
 }
