@@ -3,13 +3,10 @@ package com.sparta.baedallegend.shop.controller.dto;
 import com.sparta.baedallegend.shop.domain.Shop;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class ReadOneShopResponse {
 
