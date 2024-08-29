@@ -2,19 +2,12 @@ package com.sparta.baedallegend.shop.service;
 
 import com.sparta.baedallegend.category.domain.Category;
 import com.sparta.baedallegend.category.repo.CategoryRepo;
-import com.sparta.baedallegend.menu.domain.Menu;
-import com.sparta.baedallegend.menu.repo.MenuRepo;
 import com.sparta.baedallegend.region.domain.Region;
 import com.sparta.baedallegend.region.repo.RegionRepo;
 import com.sparta.baedallegend.shop.controller.dto.CreateShopRequest;
 import com.sparta.baedallegend.shop.controller.dto.FindAllShopResponse;
-import com.sparta.baedallegend.shop.controller.dto.ReadOneShopMenuResponse;
-import com.sparta.baedallegend.shop.controller.dto.ReadOneShopRequest;
-import com.sparta.baedallegend.shop.controller.dto.ReadOneShopResponse;
 import com.sparta.baedallegend.shop.domain.Shop;
 import com.sparta.baedallegend.shop.domain.ShopCategory;
-import com.sparta.baedallegend.shop.exception.ShopErrorCode;
-import com.sparta.baedallegend.shop.exception.ShopException;
 import com.sparta.baedallegend.shop.repo.ShopCategoryRepo;
 import com.sparta.baedallegend.shop.repo.ShopRepo;
 import com.sparta.baedallegend.user.domain.User;
@@ -39,7 +32,6 @@ public class ShopService {
 	private final CategoryRepo categoryRepo;
 	private final ShopCategoryRepo shopCategoryRepo;
 	private final RegionRepo regionRepo;
-	private final MenuRepo menuRepo;
 
 	@Transactional
 	public String create(Long userId, CreateShopRequest createShopRequest) {
@@ -74,20 +66,6 @@ public class ShopService {
 			.collect(Collectors.toList());
 
 		return new PageImpl<>(findAllShopResponses, pageRequest, shops.getSize());
-	}
-
-	public ReadOneShopResponse readOne(ReadOneShopRequest request) {
-		Shop shop = shopRepo.findById(UUID.fromString(request.getShopId()))
-			.orElseThrow(() -> new ShopException(ShopErrorCode.NOT_EXIST, request.getShopId()));
-
-		List<Menu> menus = menuRepo.findByShopAndIsPublicTrue(shop);
-
-		List<ReadOneShopMenuResponse> menuResponses = menus.stream()
-			.map(ReadOneShopMenuResponse::from).collect(
-				Collectors.toList());
-
-		ReadOneShopResponse response = ReadOneShopResponse.of(shop, menuResponses);
-		return response;
-	}
+	} // TODO 페이징 처리 필요
 
 }
