@@ -1,6 +1,6 @@
 package com.sparta.baedallegend.user.fixture;
 
-import com.sparta.baedallegend.auth.controller.model.SignUpType;
+import com.sparta.baedallegend.user.domain.Role;
 import com.sparta.baedallegend.user.domain.User;
 import com.sparta.baedallegend.user.domain.wrap.Password;
 
@@ -11,7 +11,7 @@ public class UserFixtureGenerator {
 			Password.from("password"),
 			"홍길동",
 			"RED홍",
-			SignUpType.CUSTOMER
+			Role.CUSTOMER
 		);
 	}
 

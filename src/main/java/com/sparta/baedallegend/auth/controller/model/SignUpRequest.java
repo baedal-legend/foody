@@ -1,5 +1,6 @@
 package com.sparta.baedallegend.auth.controller.model;
 
+import com.sparta.baedallegend.user.domain.Role;
 import com.sparta.baedallegend.user.domain.User;
 import com.sparta.baedallegend.user.domain.wrap.Password;
 
@@ -8,7 +9,7 @@ public record SignUpRequest(
 	String password,
 	String name,
 	String nickname,
-	SignUpType signUpType
+	Role signUpType
 ) {
 
 	public User toEntity(Password encodedPassword) {

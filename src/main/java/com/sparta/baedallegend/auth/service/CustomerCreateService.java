@@ -1,7 +1,7 @@
 package com.sparta.baedallegend.auth.service;
 
 import com.sparta.baedallegend.auth.controller.model.SignUpRequest;
-import com.sparta.baedallegend.auth.controller.model.SignUpType;
+import com.sparta.baedallegend.user.domain.Role;
 import com.sparta.baedallegend.user.domain.User;
 import com.sparta.baedallegend.user.domain.wrap.Password;
 import jakarta.persistence.EntityManager;
@@ -36,8 +36,8 @@ public class CustomerCreateService implements CreateUserService {
 	}
 
 	@Override
-	public boolean isMatched(SignUpType signUpType) {
-		return signUpType.isCustomer();
+	public boolean isMatched(Role role) {
+		return role.isCustomer();
 	}
 
 	private Password encryptPassword(String password) {

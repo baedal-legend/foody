@@ -8,7 +8,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.sparta.baedallegend.auth.controller.model.SignInRequest;
 import com.sparta.baedallegend.auth.controller.model.SignUpRequest;
-import com.sparta.baedallegend.auth.controller.model.SignUpType;
 import com.sparta.baedallegend.auth.service.AuthenticationService;
 import com.sparta.baedallegend.auth.service.SignUpFacade;
 import com.sparta.baedallegend.base.WebMvcTestBase;
@@ -37,7 +36,7 @@ class AuthControllerTest extends WebMvcTestBase {
 			"password",
 			"홍길동",
 			"Red홍",
-			SignUpType.CUSTOMER
+			Role.CUSTOMER
 		);
 		given(signUpFacade.signUp(signUpRequest)).willReturn(1L);
 
