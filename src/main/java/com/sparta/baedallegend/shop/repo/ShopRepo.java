@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -21,5 +22,8 @@ public interface ShopRepo extends JpaRepository<Shop, UUID> {
 		+ "WHEN s.status = 'CLOSED' THEN 3 "
 		+ "END")
 	Page<Shop> findByIsPublicTrue(PageRequest pageRequest);
+
+	@Query("SELECT s FROM Shop s WHERE s.name LIKE %:keyword%")
+	Page<Shop> findByNameLike(PageRequest pageRequest, @Param("keyword") String keyword);
 
 }
