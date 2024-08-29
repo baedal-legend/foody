@@ -11,15 +11,5 @@ public enum MenuStatus {
 		this.description = description;
 	}
 
-	public String getDescription() {
-		return description;
-	}
 
-	@JsonCreator
-	public static MenuStatus parsing(String description) {
-		return Stream.of(MenuStatus.values())
-			.filter(menuStatus -> menuStatus.toString().equals(description.toUpperCase()))
-			.findFirst()
-			.orElseThrow(() -> new IllegalArgumentException("메뉴 상태 유형이 잘못되었습니다."));
-	}
 }
