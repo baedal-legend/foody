@@ -19,8 +19,8 @@ public class MenuService {
 
 	@Transactional
 	public String create(CreateMenuRequest createMenuRequest) {
-		UUID shopId = createMenuRequest.getShopId();
-		Shop shop = shopRepo.findById(shopId).orElseThrow(() ->
+		String shopId = createMenuRequest.getShopId();
+		Shop shop = shopRepo.findById(UUID.fromString(shopId)).orElseThrow(() ->
 			new IllegalArgumentException("존재하지 않는 가게입니다."));
 		// 확인 후 새로운 메뉴 추가
 		Menu menu = createMenuRequest.toEntity(shop);
