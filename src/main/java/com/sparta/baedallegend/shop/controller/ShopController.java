@@ -2,8 +2,6 @@ package com.sparta.baedallegend.shop.controller;
 
 import com.sparta.baedallegend.shop.controller.dto.CreateShopRequest;
 import com.sparta.baedallegend.shop.controller.dto.FindAllShopResponse;
-import com.sparta.baedallegend.shop.controller.dto.ReadOneShopRequest;
-import com.sparta.baedallegend.shop.controller.dto.ReadOneShopResponse;
 import com.sparta.baedallegend.shop.service.ShopService;
 import java.net.URI;
 import lombok.RequiredArgsConstructor;
@@ -48,7 +46,7 @@ public class ShopController {
 		Page<FindAllShopResponse> responses = shopService.findAll(pageRequest);
 		return ResponseEntity.ok().body(responses);
 	}
-
+  
 	@GetMapping("/details")
 	public ResponseEntity<ReadOneShopResponse> readOne(@RequestBody ReadOneShopRequest request1) {
 		ReadOneShopResponse response = shopService.readOne(request1);
