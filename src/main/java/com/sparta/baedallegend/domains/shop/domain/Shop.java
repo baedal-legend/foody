@@ -1,7 +1,10 @@
 package com.sparta.baedallegend.domains.shop.domain;
 
+import static com.sparta.baedallegend.global.config.jpa.audit.CommonAuditFields.DEFAULT_CONDITION;
+
 import com.sparta.baedallegend.domains.region.domain.Region;
 import com.sparta.baedallegend.domains.user.domain.User;
+import com.sparta.baedallegend.global.config.jpa.audit.Auditable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -18,12 +21,14 @@ import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SQLRestriction;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@SQLRestriction(DEFAULT_CONDITION)
 @Table(name = "p_shop")
-public class Shop {
+public class Shop extends Auditable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
