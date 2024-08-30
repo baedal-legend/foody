@@ -10,6 +10,7 @@ import com.sparta.baedallegend.shop.controller.dto.CreateShopRequest;
 import com.sparta.baedallegend.shop.controller.dto.FindAllShopResponse;
 import com.sparta.baedallegend.shop.controller.dto.ReadOneShopMenuResponse;
 import com.sparta.baedallegend.shop.controller.dto.ReadOneShopResponse;
+import com.sparta.baedallegend.shop.controller.dto.SearchShopResponse;
 import com.sparta.baedallegend.shop.domain.Shop;
 import com.sparta.baedallegend.shop.domain.ShopCategory;
 import com.sparta.baedallegend.shop.exception.ShopErrorCode;
@@ -18,7 +19,9 @@ import com.sparta.baedallegend.shop.repo.ShopCategoryRepo;
 import com.sparta.baedallegend.shop.repo.ShopRepo;
 import com.sparta.baedallegend.user.domain.User;
 import com.sparta.baedallegend.user.repo.UserRepo;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -75,6 +78,36 @@ public class ShopService {
 		return new PageImpl<>(findAllShopResponses, pageRequest, shops.getSize());
 	}
 
+	public Page<SearchShopResponse> search(PageRequest pageRequest, String keyword) {
+		// 가게 이름에 해당 키워드가 포함된 가게 가져오기
+		Page<Shop> shops = shopRepo.findByNameLike(pageRequest, keyword);
+
+		// Shop Id를 키로 SearchShopResponse 를 값으로 responseMap 생성
+		Map<String, SearchShopResponse> responsesMap = shops.stream()
+			.map(SearchShopResponse::from)
+			.collect(Collectors.toMap(SearchShopResponse::getId, response -> response));
+
+		// 메뉴에 해당 키워드가 포함된 메뉴들 가져오기
+		List<Menu> menus = menuRepo.findByNameLike(keyword);
+
+		menus.forEach(menu -> {
+			String shopId = menu.getShop().getId().toString();
+			SearchShopResponse response = responsesMap.get(shopId);
+			if (response != null) {
+				if (response.getMenuNames().size() < 3) {
+					response.addMenuName(menu.getName());
+				}
+			} else {
+				SearchShopResponse newResponse = SearchShopResponse.from(menu.getShop());
+				newResponse.addMenuName(menu.getName());
+				responsesMap.put(shopId, newResponse);
+			}
+		});
+
+		List<SearchShopResponse> responses = new ArrayList<>(responsesMap.values());
+		return new PageImpl<>(responses, pageRequest, responses.size());
+	}
+
 	public ReadOneShopResponse readOne(String shopId) {
 		Shop shop = shopRepo.findById(UUID.fromString(shopId))
 			.orElseThrow(() -> new ShopException(ShopErrorCode.NOT_EXIST, shopId));
@@ -88,5 +121,6 @@ public class ShopService {
 		ReadOneShopResponse response = ReadOneShopResponse.of(shop, menuResponses);
 		return response;
 	}
+
 
 }
