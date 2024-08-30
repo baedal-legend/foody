@@ -1,4 +1,4 @@
-package com.sparta.baedallegend.global.config.jpa;
+package com.sparta.baedallegend.global.config.jpa.audit;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
@@ -13,7 +13,14 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class CommonAuditFields {
 
+	public static final String DEFAULT_CONDITION_FORMAT = "%s and %s";
 	public static final String DELETED_FALSE = "is_deleted = false";
+	public static final String PUBLIC = "is_public = true";
+	
+	public static final String DEFAULT_CONDITION = DEFAULT_CONDITION_FORMAT.formatted(
+		DELETED_FALSE,
+		PUBLIC
+	);
 
 	@LastModifiedBy
 	private Long updatedBy;

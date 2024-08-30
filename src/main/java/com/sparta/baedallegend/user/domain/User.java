@@ -1,6 +1,6 @@
 package com.sparta.baedallegend.user.domain;
 
-import static com.sparta.baedallegend.global.config.jpa.CommonAuditFields.DELETED_FALSE;
+import static com.sparta.baedallegend.global.config.jpa.audit.CommonAuditFields.DELETED_FALSE;
 
 import com.sparta.baedallegend.user.domain.auditor.UserAuditable;
 import com.sparta.baedallegend.user.domain.wrap.Password;

@@ -1,4 +1,4 @@
-package com.sparta.baedallegend.global.config.jpa;
+package com.sparta.baedallegend.global.config.jpa.audit;
 
 import static org.springframework.security.config.Elements.ANONYMOUS;
 

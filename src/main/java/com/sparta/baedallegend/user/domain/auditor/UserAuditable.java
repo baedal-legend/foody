@@ -1,6 +1,6 @@
 package com.sparta.baedallegend.user.domain.auditor;
 
-import com.sparta.baedallegend.global.config.jpa.CommonAuditFields;
+import com.sparta.baedallegend.global.config.jpa.audit.CommonAuditFields;
 import jakarta.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 import lombok.Getter;

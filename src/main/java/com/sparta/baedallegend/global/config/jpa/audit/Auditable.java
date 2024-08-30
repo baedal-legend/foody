@@ -1,4 +1,4 @@
-package com.sparta.baedallegend.global.config.jpa;
+package com.sparta.baedallegend.global.config.jpa.audit;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
@@ -12,7 +12,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class Auditable {
+public abstract class Auditable extends CommonAuditFields {
 
 	@CreatedBy
 	@Column(nullable = false, updatable = false)
@@ -21,7 +21,5 @@ public abstract class Auditable {
 	@CreatedDate
 	@Column(nullable = false, updatable = false)
 	private LocalDateTime createdAt;
-	
-	protected CommonAuditFields auditableFields;
 
 }
