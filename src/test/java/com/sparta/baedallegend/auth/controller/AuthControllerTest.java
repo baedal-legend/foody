@@ -13,8 +13,12 @@ import com.sparta.baedallegend.auth.service.AuthenticationService;
 import com.sparta.baedallegend.auth.service.SignUpFacade;
 import com.sparta.baedallegend.base.WebMvcTestBase;
 import com.sparta.baedallegend.user.domain.Role;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.util.MimeTypeUtils;
@@ -28,18 +32,13 @@ class AuthControllerTest extends WebMvcTestBase {
 	@MockBean
 	private AuthenticationService authenticationService;
 
-	@Test
+	@ParameterizedTest
+	@MethodSource
 	@DisplayName("[회원 가입][POST:201]")
-	void signUp() throws Exception {
+	void signUp(final SignUpRequest signUpRequest) throws Exception {
 		// Given
 		final String uri = "/auth/sign-up";
-		SignUpRequest signUpRequest = new SignUpRequest(
-			"customer@foody.io",
-			"password",
-			"홍길동",
-			"Red홍",
-			Role.CUSTOMER
-		);
+
 		given(signUpFacade.signUp(signUpRequest)).willReturn(1L);
 
 		// When
@@ -52,6 +51,30 @@ class AuthControllerTest extends WebMvcTestBase {
 		// Then
 		resultActions.andDo(print())
 			.andExpect(status().isCreated());
+	}
+
+	private static Stream<Arguments> signUp() {
+		return Stream.of(
+			Arguments.of(new SignUpRequest(
+				"customer@foody.io",
+				"password",
+				"홍길동",
+				"Red홍",
+				Role.CUSTOMER
+			)), Arguments.of(new SignUpRequest(
+				"onwer@foody.io",
+				"password",
+				"백종원",
+				"100to1",
+				Role.OWNER
+			)), Arguments.of(new SignUpRequest(
+				"onwer@foody.io",
+				"password",
+				"백종원",
+				"100to1",
+				Role.MASTER
+			))
+		);
 	}
 
 	@Test

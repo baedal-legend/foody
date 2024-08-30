@@ -1,4 +1,4 @@
-package com.sparta.baedallegend.auth.service;
+package com.sparta.baedallegend.auth.service.strategy;
 
 import com.sparta.baedallegend.auth.controller.model.SignUpRequest;
 import com.sparta.baedallegend.user.domain.Role;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class CustomerCreateService implements CreateUserService {
+public class CreateCustomerStrategy implements CreateUserService {
 
 	private final EntityManager entityManager;
 	private final PasswordEncoder passwordEncoder;

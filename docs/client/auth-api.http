@@ -1,4 +1,4 @@
-## 회원 가입 API
+## 고객 회원 가입 API
 POST http://localhost:8080/auth/sign-up
 Content-Type: application/json
 
@@ -8,6 +8,34 @@ Content-Type: application/json
   "name": "홍길동",
   "nickname": "Red홍",
   "signUpType": "CUSTOMER"
+}
+
+###
+
+## 사장님 회원 가입 API
+POST http://localhost:8080/auth/sign-up
+Content-Type: application/json
+
+{
+  "email": "onwer@foody.io",
+  "password": "password",
+  "name": "백종원",
+  "nickname": "100to1",
+  "signUpType": "OWNER"
+}
+
+###
+
+## 관리자 회원 가입 API
+POST http://localhost:8080/auth/sign-up
+Content-Type: application/json
+
+{
+  "email": "master@foody.io",
+  "password": "password",
+  "name": "강레오",
+  "nickname": "ye-chef",
+  "signUpType": "MASTER"
 }
 
 ###

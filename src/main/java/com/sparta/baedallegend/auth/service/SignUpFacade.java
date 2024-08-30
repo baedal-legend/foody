@@ -3,6 +3,7 @@ package com.sparta.baedallegend.auth.service;
 import com.sparta.baedallegend.auth.controller.model.SignUpRequest;
 import com.sparta.baedallegend.auth.exception.AuthErrorCode;
 import com.sparta.baedallegend.auth.exception.AuthException;
+import com.sparta.baedallegend.auth.service.strategy.CreateUserService;
 import com.sparta.baedallegend.user.repo.UserRepo;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

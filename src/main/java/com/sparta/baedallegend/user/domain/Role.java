@@ -18,4 +18,12 @@ public enum Role {
 	public boolean isCustomer() {
 		return this == CUSTOMER;
 	}
+
+	public boolean isOwner() {
+		return this == OWNER;
+	}
+
+	public boolean isMaster() {
+		return this == MASTER;
+	}
 }
