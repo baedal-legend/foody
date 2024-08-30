@@ -5,7 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import com.sparta.baedallegend.base.JpaTestBase;
-import com.sparta.baedallegend.user.domain.User;
+import com.sparta.baedallegend.domains.user.domain.User;
+import com.sparta.baedallegend.domains.user.repo.UserRepo;
 import java.util.NoSuchElementException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -7,12 +7,12 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.sparta.baedallegend.auth.controller.model.SignInRequest;
-import com.sparta.baedallegend.auth.controller.model.SignUpRequest;
-import com.sparta.baedallegend.auth.service.AuthenticationService;
-import com.sparta.baedallegend.auth.service.SignUpFacade;
+import com.sparta.baedallegend.domains.auth.controller.model.SignInRequest;
+import com.sparta.baedallegend.domains.auth.controller.model.SignUpRequest;
+import com.sparta.baedallegend.domains.auth.service.AuthenticationService;
+import com.sparta.baedallegend.domains.auth.service.SignUpFacade;
 import com.sparta.baedallegend.base.WebMvcTestBase;
-import com.sparta.baedallegend.user.domain.Role;
+import com.sparta.baedallegend.domains.user.domain.Role;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

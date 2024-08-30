@@ -1,6 +1,6 @@
 package com.sparta.baedallegend;
 
-import com.sparta.baedallegend.auth.utils.jwt.JwtProperties;
+import com.sparta.baedallegend.domains.auth.utils.jwt.JwtProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
