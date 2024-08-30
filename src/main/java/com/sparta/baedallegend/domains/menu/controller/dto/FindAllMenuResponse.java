@@ -1,8 +1,8 @@
-package com.sparta.baedallegend.menu.controller.dto;
+package com.sparta.baedallegend.domains.menu.controller.dto;
 
 
-import com.sparta.baedallegend.menu.domain.Menu;
-import com.sparta.baedallegend.menu.domain.MenuStatus;
+import com.sparta.baedallegend.domains.menu.domain.Menu;
+import com.sparta.baedallegend.domains.menu.domain.MenuStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
