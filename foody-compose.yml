@@ -1,0 +1,14 @@
+services:
+  foody-app:
+    image: baedal-legend:latest
+    container_name: foody
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5432/foody?useUnicode=yes&characterEncoding=UTF-8&rewriteBatchedStatements=true
+      - SPRING_DATASOURCE_USERNAME=foody
+      - SPRING_DATASOURCE_PASSWORD=foody
+
+networks:
+  foody_network:
+    driver: bridge
