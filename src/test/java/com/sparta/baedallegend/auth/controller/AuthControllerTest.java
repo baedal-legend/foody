@@ -67,6 +67,12 @@ class AuthControllerTest extends WebMvcTestBase {
 				"백종원",
 				"100to1",
 				Role.OWNER
+			)), Arguments.of(new SignUpRequest(
+				"onwer@foody.io",
+				"password",
+				"백종원",
+				"100to1",
+				Role.MASTER
 			))
 		);
 	}
