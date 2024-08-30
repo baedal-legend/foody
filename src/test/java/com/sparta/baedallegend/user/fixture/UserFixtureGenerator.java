@@ -1,8 +1,8 @@
 package com.sparta.baedallegend.user.fixture;
 
-import com.sparta.baedallegend.user.domain.Role;
-import com.sparta.baedallegend.user.domain.User;
-import com.sparta.baedallegend.user.domain.wrap.Password;
+import com.sparta.baedallegend.domains.user.domain.Role;
+import com.sparta.baedallegend.domains.user.domain.User;
+import com.sparta.baedallegend.domains.user.domain.wrap.Password;
 
 public class UserFixtureGenerator {
 

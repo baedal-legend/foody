@@ -1,9 +1,9 @@
 package com.sparta.baedallegend.global.config.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sparta.baedallegend.auth.filter.JwtFilter;
-import com.sparta.baedallegend.auth.service.AuthenticationService;
-import com.sparta.baedallegend.auth.utils.jwt.JwtProperties;
+import com.sparta.baedallegend.domains.auth.filter.JwtFilter;
+import com.sparta.baedallegend.domains.auth.service.AuthenticationService;
+import com.sparta.baedallegend.domains.auth.utils.jwt.JwtProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
