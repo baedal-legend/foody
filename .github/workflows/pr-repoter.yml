@@ -11,10 +11,14 @@ jobs:
     steps:
     - name: 👀 Repository checkout
       uses: actions/checkout@v4
+
+    - uses: appleboy/discord-action@master
       with:
         webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
         webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
-        args: [ 👀 Repository checkout ] step started
+        color: "#48f442"
+        username: "GitHub Bot"
+        message: [ 👀 Repository checkout ] step started
 
     - name: ☕ Set up JDK 17
       uses: actions/setup-java@v4
@@ -31,22 +35,30 @@ jobs:
       with:
         webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
         webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
-        args: [ 🧪 Test with Gradle ] step started
+        color: "#48f442"
+        username: "GitHub Bot"
+        message: [ 🧪 Test with Gradle ] step started
 
     - name: 📤 Publish unit Test results
       uses: EnricoMi/publish-unit-test-result-action@v2
       if: always()
+    - uses: appleboy/discord-action@master
       with:
         files: 'build/test-results/**/*.xml'
         webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
         webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
-        args: [ 📤 Publish Unit Test results ] step started
+        color: "#48f442"
+        username: "GitHub Bot"
+        message: [ 📤 Publish Unit Test results ] step started
 
-    - name: 🙅‍♂️ Add comments to fail tests
+    - name: 📝 Add comments to fail tests
       uses: mikepenz/action-junit-report@v3
       if: always()
+    - uses: appleboy/discord-action@master
       with:
         report_paths: 'build/test-results/test/TEST-*.xml'
         webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
         webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
-        args: [ ♂️ Add comments to fail tests ] step started
+        color: "#48f442"
+        username: "GitHub Bot"
+        message: [ 📝 Add comments to fail tests ] step started
