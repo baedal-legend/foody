@@ -4,3 +4,10 @@ Content-Type: application/json
 Authorization: Bearer {{access_token}}
 
 ###
+
+## 회원 탈퇴 API
+DELETE http://localhost:8080/user/withdraw
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+###
