@@ -12,8 +12,8 @@ jobs:
     - name: 👀 Repository checkout
       uses: actions/checkout@v4
       with:
-        webhook_id: ${{ secrets.WEBHOOK_ID }}
-        webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+        webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
+        webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
         args: [ 👀 Repository checkout ] step started
 
     - name: ☕ Set up JDK 17
@@ -29,8 +29,8 @@ jobs:
       run: ./gradlew --info test
       uses: appleboy/discord-action@master
       with:
-        webhook_id: ${{ secrets.WEBHOOK_ID }}
-        webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+        webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
+        webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
         args: [ 🧪 Test with Gradle ] step started
 
     - name: 📤 Publish unit Test results
@@ -38,8 +38,8 @@ jobs:
       if: always()
       with:
         files: 'build/test-results/**/*.xml'
-        webhook_id: ${{ secrets.WEBHOOK_ID }}
-        webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+        webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
+        webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
         args: [ 📤 Publish Unit Test results ] step started
 
     - name: 🙅‍♂️ Add comments to fail tests
@@ -47,6 +47,6 @@ jobs:
       if: always()
       with:
         report_paths: 'build/test-results/test/TEST-*.xml'
-        webhook_id: ${{ secrets.WEBHOOK_ID }}
-        webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+        webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
+        webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
         args: [ ♂️ Add comments to fail tests ] step started
