@@ -18,3 +18,17 @@ docker compose up -d
 
 3. 연결 확인
 > jdbc:postgresql://host.docker.internal:5432/foody
+
+4. docker build
+```shell
+./gradlew jibDockerBuild
+```
+- 빌드 확인 
+```shell
+docker images | grep baedal-legend
+``` 
+
+5. 빌드 및 실행/종료 관련 script
+- 빌드 : [build.sh](docs%2Fbuild.sh)
+- Foody 서비스 시작 : [service-up.sh](docs%2Fservice-up.sh)
+- Foody 서비스 종료 [service-down.sh](docs%2Fservice-down.sh)
