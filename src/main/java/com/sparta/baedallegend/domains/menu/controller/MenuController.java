@@ -4,7 +4,6 @@ import com.sparta.baedallegend.domains.menu.controller.dto.CreateMenuRequest;
 import com.sparta.baedallegend.domains.menu.controller.dto.FindAllMenuResponse;
 import com.sparta.baedallegend.domains.menu.service.MenuService;
 import com.sparta.baedallegend.global.utils.ResponseEntityUtils;
-import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -35,7 +34,7 @@ public class MenuController {
 
 	@GetMapping("/menu/{shopId}")
 	public Page<FindAllMenuResponse> findAllMenu(
-		@PathVariable UUID shopId,
+		@PathVariable String shopId,
 		@RequestParam(value = "page", defaultValue = "0") int page,
 		@RequestParam(value = "size", defaultValue = "1") int size
 	) {
