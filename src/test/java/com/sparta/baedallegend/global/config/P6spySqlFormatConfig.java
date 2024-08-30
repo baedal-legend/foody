@@ -1,4 +1,4 @@
-package com.sparta.baedallegend.config;
+package com.sparta.baedallegend.global.config;
 
 import com.p6spy.engine.common.ConnectionInformation;
 import com.p6spy.engine.event.JdbcEventListener;

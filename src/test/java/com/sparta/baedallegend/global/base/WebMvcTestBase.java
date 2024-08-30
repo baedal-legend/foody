@@ -1,4 +1,4 @@
-package com.sparta.baedallegend.base;
+package com.sparta.baedallegend.global.base;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.baedallegend.domains.auth.controller.AuthController;

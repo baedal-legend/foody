@@ -1,4 +1,4 @@
-package com.sparta.baedallegend.auth.controller;
+package com.sparta.baedallegend.domains.auth.controller;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
@@ -11,7 +11,7 @@ import com.sparta.baedallegend.domains.auth.controller.model.SignInRequest;
 import com.sparta.baedallegend.domains.auth.controller.model.SignUpRequest;
 import com.sparta.baedallegend.domains.auth.service.AuthenticationService;
 import com.sparta.baedallegend.domains.auth.service.SignUpFacade;
-import com.sparta.baedallegend.base.WebMvcTestBase;
+import com.sparta.baedallegend.global.base.WebMvcTestBase;
 import com.sparta.baedallegend.domains.user.domain.Role;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
