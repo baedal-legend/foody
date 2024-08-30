@@ -31,7 +31,8 @@ public class SecurityConfig {
 
 			// TODO 권한 별 Endpoint 관리를 위한 Enum 정의
 			.authorizeHttpRequests(auth -> auth
-				.requestMatchers(POST, "/auth/sign-up", "/auth/sign-in").permitAll()
+				.requestMatchers(POST, "/auth/**").permitAll()
+				.requestMatchers(GET, "/auth/type").permitAll()
 				.requestMatchers(POST, "/shop/**").permitAll()
 				.requestMatchers(POST, "/menu/**").permitAll()
 				.requestMatchers(GET, "/menu/**").permitAll()

@@ -2,16 +2,17 @@ package com.sparta.baedallegend.auth.controller;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.sparta.baedallegend.auth.controller.model.SignInRequest;
 import com.sparta.baedallegend.auth.controller.model.SignUpRequest;
-import com.sparta.baedallegend.auth.controller.model.SignUpType;
 import com.sparta.baedallegend.auth.service.AuthenticationService;
 import com.sparta.baedallegend.auth.service.SignUpFacade;
 import com.sparta.baedallegend.base.WebMvcTestBase;
+import com.sparta.baedallegend.user.domain.Role;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -37,7 +38,7 @@ class AuthControllerTest extends WebMvcTestBase {
 			"password",
 			"홍길동",
 			"Red홍",
-			SignUpType.CUSTOMER
+			Role.CUSTOMER
 		);
 		given(signUpFacade.signUp(signUpRequest)).willReturn(1L);
 
@@ -51,6 +52,23 @@ class AuthControllerTest extends WebMvcTestBase {
 		// Then
 		resultActions.andDo(print())
 			.andExpect(status().isCreated());
+	}
+
+	@Test
+	@DisplayName("[회원 타입][GET:200]")
+	void signUpType() throws Exception {
+		// Given
+		final String uri = "/auth/type";
+
+		// When
+		ResultActions resultActions = mockMvc.perform(get(uri)
+			.contentType(MimeTypeUtils.APPLICATION_JSON_VALUE)
+			.accept(MimeTypeUtils.APPLICATION_JSON_VALUE)
+		);
+
+		// Then
+		resultActions.andDo(print())
+			.andExpect(status().isOk());
 	}
 
 	@Test

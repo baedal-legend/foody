@@ -25,3 +25,9 @@ Content-Type: application/json
 %}
 
 ###
+
+## 회원 타입 조회 API
+GET http://localhost:8080/auth/type
+Content-Type: application/json
+
+###

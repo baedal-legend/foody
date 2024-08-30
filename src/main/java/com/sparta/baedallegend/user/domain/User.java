@@ -2,7 +2,6 @@ package com.sparta.baedallegend.user.domain;
 
 import static com.sparta.baedallegend.global.config.jpa.CommonAuditFields.DELETED_FALSE;
 
-import com.sparta.baedallegend.auth.controller.model.SignUpType;
 import com.sparta.baedallegend.user.domain.auditor.UserAuditable;
 import com.sparta.baedallegend.user.domain.wrap.Password;
 import jakarta.persistence.AttributeOverride;
@@ -67,9 +66,9 @@ public class User extends UserAuditable {
 		Password encodedPassword,
 		String name,
 		String nickname,
-		SignUpType signUpType
+		Role signUpType
 	) {
-		return new User(email, name, nickname, encodedPassword, Role.valueOf(signUpType.name()));
+		return new User(email, name, nickname, encodedPassword, signUpType);
 	}
 
 	public void applyUserCreated(Long id) {

@@ -14,4 +14,8 @@ public enum Role {
 	Role(String description) {
 		this.description = description;
 	}
+
+	public boolean isCustomer() {
+		return this == CUSTOMER;
+	}
 }
