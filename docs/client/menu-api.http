@@ -1,0 +1,16 @@
+### 메뉴 등록 API
+POST http://localhost:8080/menu
+Content-Type: application/json
+
+{
+  "shopId": "9b12eb4d-3b7d-4bad-9bdd-1b0d7b3dca6d",
+  "name": "라볶이",
+  "price": 4000,
+  "description": "친구들과 함께 나눠먹으면 맛있는 라볶이를 드셔보세요",
+  "menuStatus": "ON_SALE"
+}
+
+
+### 메뉴 전체 조회 API
+GET http://localhost:8080/menu/9b12eb4d-3b7d-4bad-9bdd-1b0d7b3dca6d?page=1&size=3
+Authorization: Bearer {{access_token}}
