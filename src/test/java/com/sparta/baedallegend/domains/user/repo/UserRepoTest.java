@@ -1,12 +1,11 @@
-package com.sparta.baedallegend.user.repo;
+package com.sparta.baedallegend.domains.user.repo;
 
-import static com.sparta.baedallegend.user.fixture.UserFixtureGenerator.generateUserFixture;
+import static com.sparta.baedallegend.global.fixture.UserFixtureGenerator.generateUserFixture;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-import com.sparta.baedallegend.base.JpaTestBase;
+import com.sparta.baedallegend.global.base.JpaTestBase;
 import com.sparta.baedallegend.domains.user.domain.User;
-import com.sparta.baedallegend.domains.user.repo.UserRepo;
 import java.util.NoSuchElementException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
-package com.sparta.baedallegend.base;
+package com.sparta.baedallegend.global.base;
 
-import static com.sparta.baedallegend.base.TestBase.TEST;
+import static com.sparta.baedallegend.global.base.TestBase.TEST;
 import static org.springframework.test.context.TestConstructor.AutowireMode.ALL;
 
 import org.springframework.test.context.ActiveProfiles;

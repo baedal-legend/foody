@@ -208,3 +208,6 @@ db
 
 ## docker compose .env
 .env
+
+### Querydsl q-class
+src/main/generated/**

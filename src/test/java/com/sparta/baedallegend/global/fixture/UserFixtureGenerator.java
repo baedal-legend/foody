@@ -1,4 +1,4 @@
-package com.sparta.baedallegend.user.fixture;
+package com.sparta.baedallegend.global.fixture;
 
 import com.sparta.baedallegend.domains.user.domain.Role;
 import com.sparta.baedallegend.domains.user.domain.User;

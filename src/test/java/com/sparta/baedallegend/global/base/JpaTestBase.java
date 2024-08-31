@@ -1,7 +1,7 @@
-package com.sparta.baedallegend.base;
+package com.sparta.baedallegend.global.base;
 
 import com.github.gavlyukovskiy.boot.jdbc.decorator.DataSourceDecoratorAutoConfiguration;
-import com.sparta.baedallegend.config.P6spySqlFormatConfig;
+import com.sparta.baedallegend.global.config.P6spySqlFormatConfig;
 import com.sparta.baedallegend.global.config.jpa.JpaConfig;
 import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
@@ -23,7 +23,7 @@ public abstract class JpaTestBase extends TestBase {
 	public static final String POSTGRES_IMAGE = "postgres:16.4";
 
 	@Resource
-	private EntityManager entityManager;
+	protected EntityManager entityManager;
 
 	protected void flushAndClear() {
 		entityManager.flush();
