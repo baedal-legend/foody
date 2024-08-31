@@ -1,7 +1,7 @@
 package com.sparta.baedallegend.domains.menu.service;
 
 import com.sparta.baedallegend.domains.menu.controller.dto.CreateMenuRequest;
-import com.sparta.baedallegend.domains.menu.controller.dto.FindAllMenuResponse;
+import com.sparta.baedallegend.domains.menu.controller.dto.FindMenuResponse;
 import com.sparta.baedallegend.domains.menu.domain.Menu;
 import com.sparta.baedallegend.domains.menu.repo.MenuRepo;
 import com.sparta.baedallegend.domains.shop.domain.Shop;
@@ -32,7 +32,7 @@ public class MenuService {
 		return saveMenu.getId().toString();
 	}
 
-	public Page<FindAllMenuResponse> findAllMenu(
+	public Page<FindMenuResponse> findAllMenu(
 		String shop_id,
 		Pageable pageable
 	) {
@@ -40,7 +40,14 @@ public class MenuService {
 			(
 				pageable,
 				UUID.fromString(shop_id));
-		return menuList.map(FindAllMenuResponse::from);
+		return menuList.map(FindMenuResponse::from);
+	}
+
+	public FindMenuResponse findOneMenu(String menuId) {
+		Menu menu = menuRepo.findByIdAndIsPublicTrue(UUID.fromString(menuId)).orElseThrow(
+			() -> new IllegalArgumentException("존재하지 않는 메뉴입니다.")
+		);
+		return FindMenuResponse.from(menu);
 	}
 
 }

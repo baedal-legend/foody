@@ -8,7 +8,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class FindAllMenuResponse {
+public class FindMenuResponse {
 
 	private String id;
 	private String name;
@@ -16,8 +16,9 @@ public class FindAllMenuResponse {
 	private int price;
 	private MenuStatus menuStatus;
 
-	public static FindAllMenuResponse from(Menu menu) {
-		return new FindAllMenuResponse(menu.getId().toString(),
+
+	public static FindMenuResponse from(Menu menu) {
+		return new FindMenuResponse(menu.getId().toString(),
 			menu.getName(),
 			menu.getDescription(),
 			menu.getPrice(),
