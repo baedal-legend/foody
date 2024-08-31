@@ -31,24 +31,25 @@ public class MenuController {
 		@RequestBody CreateMenuRequest createMenuRequest
 	) {
 		final String menuId = menuService.create(createMenuRequest);
-		return ResponseEntityUtils.created("/menu/{menu_id}", menuId);
+		return ResponseEntityUtils.created("/menus/menu/{menu_id}", menuId);
 	}
 
 	@GetMapping("/{shopId}")
-	public Page<FindMenuResponse> findAllMenu(
+	public ResponseEntity<Page<FindMenuResponse>> findAllMenu(
 		@PathVariable String shopId,
 		@RequestParam(value = "page", defaultValue = "0") int page,
 		@RequestParam(value = "size", defaultValue = "1") int size
 	) {
 		Pageable pageable = PageRequest.of(page, size);
 		Page<FindMenuResponse> menuList = menuService.findAllMenu(shopId, pageable);
-		return menuList;
+		return ResponseEntity.ok().body(menuList);
 	}
 
 	@GetMapping("/menu/{menuId}")
-	public FindMenuResponse FindOneMenu(
+	public ResponseEntity<FindMenuResponse> FindOneMenu(
 		@PathVariable String menuId) {
-		return menuService.findOneMenu(menuId);
+		FindMenuResponse memo = menuService.findOneMenu(menuId);
+		return ResponseEntity.ok().body(memo);
 	}
 
 }
