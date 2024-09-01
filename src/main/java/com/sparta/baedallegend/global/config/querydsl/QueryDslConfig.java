@@ -2,15 +2,15 @@ package com.sparta.baedallegend.global.config.querydsl;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@RequiredArgsConstructor
 public class QueryDslConfig {
 
-	private final EntityManager entityManager;
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	@Bean
 	public JPAQueryFactory jpaQueryFactory() {
