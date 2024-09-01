@@ -27,8 +27,4 @@ public class SearchShopResponse {
 				.collect(Collectors.toList()));
 	}
 
-	public void addMenuName(String menuName) {
-		menuNames.add(menuName);
-	}
-
 }

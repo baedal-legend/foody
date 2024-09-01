@@ -78,10 +78,7 @@ public class ShopService {
 
 	public Page<SearchShopResponse> search(PageRequest pageRequest, String keyword) {
 		Page<Shop> shops = shopRepository.search(pageRequest, keyword);
-		Page<SearchShopResponse> responses = shops.map(
-			shop -> SearchShopResponse.of(shop, keyword));
-
-		return new PageImpl<>(responses.stream().toList(), pageRequest, shops.getTotalElements());
+		return shops.map(shop -> SearchShopResponse.of(shop, keyword));
 	}
 
 	public ReadOneShopResponse readOne(String shopId) {
