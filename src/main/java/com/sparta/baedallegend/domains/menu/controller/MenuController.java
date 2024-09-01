@@ -48,8 +48,9 @@ public class MenuController {
 	@GetMapping("/menu/{menuId}")
 	public ResponseEntity<FindMenuResponse> FindOneMenu(
 		@PathVariable String menuId) {
-		FindMenuResponse memo = menuService.findOneMenu(menuId);
-		return ResponseEntity.ok().body(memo);
+		FindMenuResponse menu = menuService.findOneMenu(menuId);
+		return ResponseEntity.ok().body(menu);
 	}
+
 
 }

@@ -11,12 +11,12 @@ import com.sparta.baedallegend.domains.shop.controller.dto.FindAllShopResponse;
 import com.sparta.baedallegend.domains.shop.controller.dto.ReadOneShopMenuResponse;
 import com.sparta.baedallegend.domains.shop.controller.dto.ReadOneShopResponse;
 import com.sparta.baedallegend.domains.shop.controller.dto.SearchShopResponse;
-import com.sparta.baedallegend.domains.shop.exception.ShopException;
-import com.sparta.baedallegend.domains.shop.repo.ShopCategoryRepo;
-import com.sparta.baedallegend.domains.shop.repo.ShopRepo;
 import com.sparta.baedallegend.domains.shop.domain.Shop;
 import com.sparta.baedallegend.domains.shop.domain.ShopCategory;
 import com.sparta.baedallegend.domains.shop.exception.ShopErrorCode;
+import com.sparta.baedallegend.domains.shop.exception.ShopException;
+import com.sparta.baedallegend.domains.shop.repo.ShopCategoryRepo;
+import com.sparta.baedallegend.domains.shop.repo.ShopRepo;
 import com.sparta.baedallegend.domains.user.domain.User;
 import com.sparta.baedallegend.domains.user.repo.UserRepo;
 import java.util.ArrayList;
@@ -112,7 +112,7 @@ public class ShopService {
 		Shop shop = shopRepo.findById(UUID.fromString(shopId))
 			.orElseThrow(() -> new ShopException(ShopErrorCode.NOT_EXIST, shopId));
 
-		List<Menu> menus = menuRepo.findByShopAndIsPublicTrue(shop);
+		List<Menu> menus = menuRepo.findByShop(shop);
 
 		List<ReadOneShopMenuResponse> menuResponses = menus.stream()
 			.map(ReadOneShopMenuResponse::from).collect(

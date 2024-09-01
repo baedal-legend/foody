@@ -1,5 +1,6 @@
 ### 메뉴 등록 API
 POST http://localhost:8080/menus
+Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
 {

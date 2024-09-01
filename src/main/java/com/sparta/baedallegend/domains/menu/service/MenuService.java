@@ -36,7 +36,7 @@ public class MenuService {
 		String shop_id,
 		Pageable pageable
 	) {
-		Page<Menu> menuList = menuRepo.findByIsPublicTrueAndShopId
+		Page<Menu> menuList = menuRepo.findByShopId
 			(
 				pageable,
 				UUID.fromString(shop_id));
@@ -44,7 +44,7 @@ public class MenuService {
 	}
 
 	public FindMenuResponse findOneMenu(String menuId) {
-		Menu menu = menuRepo.findByIdAndIsPublicTrue(UUID.fromString(menuId)).orElseThrow(
+		Menu menu = menuRepo.findById(UUID.fromString(menuId)).orElseThrow(
 			() -> new IllegalArgumentException("존재하지 않는 메뉴입니다.")
 		);
 		return FindMenuResponse.from(menu);

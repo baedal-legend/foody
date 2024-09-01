@@ -14,11 +14,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MenuRepo extends JpaRepository<Menu, UUID> {
 
-	Page<Menu> findByIsPublicTrueAndShopId(Pageable pageable, UUID shopId);
+	Page<Menu> findByShopId(Pageable pageable, UUID shopId);
 
-	List<Menu> findByShopAndIsPublicTrue(Shop shop);
+	List<Menu> findByShop(Shop shop);
 
-	Optional<Menu> findByIdAndIsPublicTrue(UUID menuId);
+	Optional<Menu> findById(UUID menuId);
 
 	@Query("SELECT m FROM Menu m WHERE m.name LIKE %:keyword%")
 	List<Menu> findByNameLike(String keyword);
