@@ -11,17 +11,15 @@ import com.sparta.baedallegend.domains.shop.controller.dto.FindAllShopResponse;
 import com.sparta.baedallegend.domains.shop.controller.dto.ReadOneShopMenuResponse;
 import com.sparta.baedallegend.domains.shop.controller.dto.ReadOneShopResponse;
 import com.sparta.baedallegend.domains.shop.controller.dto.SearchShopResponse;
-import com.sparta.baedallegend.domains.shop.exception.ShopException;
-import com.sparta.baedallegend.domains.shop.repo.ShopCategoryRepo;
-import com.sparta.baedallegend.domains.shop.repo.ShopRepo;
 import com.sparta.baedallegend.domains.shop.domain.Shop;
 import com.sparta.baedallegend.domains.shop.domain.ShopCategory;
 import com.sparta.baedallegend.domains.shop.exception.ShopErrorCode;
+import com.sparta.baedallegend.domains.shop.exception.ShopException;
+import com.sparta.baedallegend.domains.shop.repo.ShopCategoryRepo;
+import com.sparta.baedallegend.domains.shop.repo.ShopRepository;
 import com.sparta.baedallegend.domains.user.domain.User;
 import com.sparta.baedallegend.domains.user.repo.UserRepo;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +34,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class ShopService {
 
-	private final ShopRepo shopRepo;
+	private final ShopRepository shopRepository;
 	private final UserRepo userRepo;
 	private final CategoryRepo categoryRepo;
 	private final ShopCategoryRepo shopCategoryRepo;
@@ -53,7 +51,7 @@ public class ShopService {
 				new IllegalArgumentException("존재하지 않는 지역입니다."));
 
 		Shop shop = createShopRequest.toEntity(user, region);
-		Shop createdShop = shopRepo.save(shop);
+		Shop createdShop = shopRepository.save(shop);
 
 		// 카테고리 설정
 		List<String> categoryIds = createShopRequest.getCategoryIds();
@@ -69,47 +67,25 @@ public class ShopService {
 	} // TODO CustomException 활용하여 수정 필요
 
 	public Page<FindAllShopResponse> findAll(PageRequest pageRequest) {
-		Page<Shop> shops = shopRepo.findByIsPublicTrue(pageRequest);
+		Page<Shop> shops = shopRepository.findByIsPublicTrue(pageRequest);
 
 		List<FindAllShopResponse> findAllShopResponses = shops.stream()
 			.map(FindAllShopResponse::from)
 			.collect(Collectors.toList());
 
-		return new PageImpl<>(findAllShopResponses, pageRequest, shops.getSize());
+		return new PageImpl<>(findAllShopResponses, pageRequest, shops.getTotalElements());
 	}
 
 	public Page<SearchShopResponse> search(PageRequest pageRequest, String keyword) {
-		// 가게 이름에 해당 키워드가 포함된 가게 가져오기
-		Page<Shop> shops = shopRepo.findByNameLike(pageRequest, keyword);
+		Page<Shop> shops = shopRepository.search(pageRequest, keyword);
+		Page<SearchShopResponse> responses = shops.map(
+			shop -> SearchShopResponse.of(shop, keyword));
 
-		// Shop Id를 키로 SearchShopResponse 를 값으로 responseMap 생성
-		Map<String, SearchShopResponse> responsesMap = shops.stream()
-			.map(SearchShopResponse::from)
-			.collect(Collectors.toMap(SearchShopResponse::getId, response -> response));
-
-		// 메뉴에 해당 키워드가 포함된 메뉴들 가져오기
-		List<Menu> menus = menuRepo.findByNameLike(keyword);
-
-		menus.forEach(menu -> {
-			String shopId = menu.getShop().getId().toString();
-			SearchShopResponse response = responsesMap.get(shopId);
-			if (response != null) {
-				if (response.getMenuNames().size() < 3) {
-					response.addMenuName(menu.getName());
-				}
-			} else {
-				SearchShopResponse newResponse = SearchShopResponse.from(menu.getShop());
-				newResponse.addMenuName(menu.getName());
-				responsesMap.put(shopId, newResponse);
-			}
-		});
-
-		List<SearchShopResponse> responses = new ArrayList<>(responsesMap.values());
-		return new PageImpl<>(responses, pageRequest, responses.size());
+		return new PageImpl<>(responses.stream().toList(), pageRequest, shops.getTotalElements());
 	}
 
 	public ReadOneShopResponse readOne(String shopId) {
-		Shop shop = shopRepo.findById(UUID.fromString(shopId))
+		Shop shop = shopRepository.findById(UUID.fromString(shopId))
 			.orElseThrow(() -> new ShopException(ShopErrorCode.NOT_EXIST, shopId));
 
 		List<Menu> menus = menuRepo.findByShopAndIsPublicTrue(shop);
