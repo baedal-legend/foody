@@ -1,16 +1,21 @@
 ### 메뉴 등록 API
-POST http://localhost:8080/menu
+POST http://localhost:8080/menus
+Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
 {
-  "shopId": "9b12eb4d-3b7d-4bad-9bdd-2b0d7b3dcb6a",
-  "name": "라볶이",
-  "price": 4000,
-  "description": "친구들과 함께 나눠먹으면 맛있는 라볶이를 드셔보세요",
+  "shopId": "775ffe1e-9e72-44d6-a19d-c36bfbdb2aa3",
+  "name": "돈까스",
+  "price": 7000,
+  "description": "든든한 돈까스를 드셔보세요",
   "menuStatus": "ON_SALE"
 }
 
 
 ### 메뉴 전체 조회 API
-GET http://localhost:8080/menu/9b12eb4d-3b7d-4bad-9bdd-2b0d7b3dcb6a?page=&size=3
+GET http://localhost:8080/menus/775ffe1e-9e72-44d6-a19d-c36bfbdb2aa3?page=&size=3
+Authorization: Bearer {{access_token}}
+
+### 메뉴 단일 조회 API
+GET http://localhost:8080/menus/menu/0bdcb8f8-cce3-4c81-918e-b630899efb4d
 Authorization: Bearer {{access_token}}

@@ -85,7 +85,7 @@ public class ShopService {
 		Shop shop = shopRepository.findById(UUID.fromString(shopId))
 			.orElseThrow(() -> new ShopException(ShopErrorCode.NOT_EXIST, shopId));
 
-		List<Menu> menus = menuRepo.findByShopAndIsPublicTrue(shop);
+		List<Menu> menus = menuRepo.findByShop(shop);
 
 		List<ReadOneShopMenuResponse> menuResponses = menus.stream()
 			.map(ReadOneShopMenuResponse::from).collect(
