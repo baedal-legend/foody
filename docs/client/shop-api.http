@@ -1,6 +1,7 @@
 ### Shop 생성 API
 POST http://localhost:8080/shop/1
 Content-Type: application/json
+Authorization: Bearer {{access_token}}
 
 {
   "name": "마시도니",
@@ -22,5 +23,5 @@ GET http://localhost:8080/shop/9b1deb4d-3b7d-4bad-9bdd-2b0d7b3acb4
 Authorization: Bearer {{access_token}}
 
 ### Shop 검색 API
-GET http://localhost:8080/shop/search?page=0&size=1
+GET http://localhost:8080/shop/search?keyword=마시
 Authorization: Bearer {{access_token}}

@@ -2,6 +2,7 @@ package com.sparta.baedallegend.domains.shop.domain;
 
 import static com.sparta.baedallegend.global.config.jpa.audit.CommonAuditFields.DEFAULT_CONDITION;
 
+import com.sparta.baedallegend.domains.menu.domain.Menu;
 import com.sparta.baedallegend.domains.region.domain.Region;
 import com.sparta.baedallegend.domains.user.domain.User;
 import com.sparta.baedallegend.global.config.jpa.audit.Auditable;
@@ -16,7 +17,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -68,6 +72,9 @@ public class Shop extends Auditable {
 	)
 	private Region region;
 
+	@OneToMany(mappedBy = "shop")
+	private List<Menu> menus = new ArrayList<>();
+
 	public static Shop of(String name, String phoneNumber, String description, String address,
 		User user, Region region) {
 		return new Shop(name, phoneNumber, description, address, user, region);
@@ -83,6 +90,10 @@ public class Shop extends Auditable {
 		this.isPublic = true;
 		this.user = user;
 		this.region = region;
+	}
+
+	public void addMenu(Menu menu) {
+		menus.add(menu);
 	}
 
 }
