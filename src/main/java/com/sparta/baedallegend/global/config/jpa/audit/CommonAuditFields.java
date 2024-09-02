@@ -24,9 +24,18 @@ public abstract class CommonAuditFields {
 	private LocalDateTime updatedAt;
 
 	private boolean isDeleted = false;
+	private boolean isPublic = true;
 
 	public void delete() {
 		isDeleted = true;
+	}
+
+	public void isPublicTrue() {
+		isPublic = true;
+	}
+
+	public void isPublicFalse() {
+		isPublic = false;
 	}
 
 }

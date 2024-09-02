@@ -31,7 +31,7 @@ public class MenuController {
 		@RequestBody CreateMenuRequest createMenuRequest
 	) {
 		final String menuId = menuService.create(createMenuRequest);
-		return ResponseEntityUtils.created("/menus/menu/{menu_id}", menuId);
+		return ResponseEntityUtils.created("/menus/menu/{menuId}", menuId);
 	}
 
 	@GetMapping("/{shopId}")
