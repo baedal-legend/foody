@@ -1,7 +1,7 @@
 package com.sparta.baedallegend.domains.shop.repo;
 
-import com.sparta.baedallegend.domains.shop.domain.ShopStatus;
 import com.sparta.baedallegend.domains.shop.domain.Shop;
+import com.sparta.baedallegend.domains.shop.domain.ShopStatus;
 import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ShopRepo extends JpaRepository<Shop, UUID> {
+public interface ShopRepository extends JpaRepository<Shop, UUID>, ShopRepositoryCustom {
 
 	ShopStatus openStatus = ShopStatus.OPEN;
 
