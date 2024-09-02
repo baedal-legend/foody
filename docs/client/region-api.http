@@ -1,0 +1,7 @@
+POST http://localhost:8080/region
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+
+{
+  "name": "멋진 지역"
+}

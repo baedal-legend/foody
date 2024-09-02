@@ -37,6 +37,7 @@ public class SecurityConfig {
 				.requestMatchers(POST, "/menus/**").permitAll()
 				.requestMatchers(GET, "/menus/**").permitAll()
 				.requestMatchers("/shop/**").permitAll()
+				.requestMatchers(POST, "/region/**").permitAll()
 				.requestMatchers(POST, "/category/**").permitAll()
 				.anyRequest().authenticated()
 			)
