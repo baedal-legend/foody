@@ -3,8 +3,12 @@ package com.sparta.baedallegend.domains.menu.service;
 import com.sparta.baedallegend.domains.menu.controller.dto.CreateMenuRequest;
 import com.sparta.baedallegend.domains.menu.controller.dto.FindMenuResponse;
 import com.sparta.baedallegend.domains.menu.domain.Menu;
+import com.sparta.baedallegend.domains.menu.exception.MenuErrorCode;
+import com.sparta.baedallegend.domains.menu.exception.MenuException;
 import com.sparta.baedallegend.domains.menu.repo.MenuRepo;
 import com.sparta.baedallegend.domains.shop.domain.Shop;
+import com.sparta.baedallegend.domains.shop.exception.ShopErrorCode;
+import com.sparta.baedallegend.domains.shop.exception.ShopException;
 import com.sparta.baedallegend.domains.shop.repo.ShopRepo;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +28,7 @@ public class MenuService {
 	public String create(CreateMenuRequest createMenuRequest) {
 		String shopId = createMenuRequest.getShopId();
 		Shop shop = shopRepo.findById(UUID.fromString(shopId)).orElseThrow(() ->
-			new IllegalArgumentException("존재하지 않는 가게입니다."));
+			new ShopException(ShopErrorCode.NOT_EXIST, shopId));
 		// 확인 후 새로운 메뉴 추가
 		Menu menu = createMenuRequest.toEntity(shop);
 		// 새로운 메뉴를 저장
@@ -36,16 +40,19 @@ public class MenuService {
 		String shopId,
 		Pageable pageable
 	) {
-		Page<Menu> menuList = menuRepo.findByShopId
-			(
-				pageable,
-				UUID.fromString(shopId));
+		Page<Menu> menuList = menuRepo.findByShopId(
+			pageable,
+			UUID.fromString(shopId)
+		);
+		if (menuList.getContent().isEmpty()) {
+			throw new ShopException(ShopErrorCode.NOT_EXIST, shopId);
+		}
 		return menuList.map(FindMenuResponse::from);
 	}
 
 	public FindMenuResponse findOneMenu(String menuId) {
 		Menu menu = menuRepo.findById(UUID.fromString(menuId)).orElseThrow(
-			() -> new IllegalArgumentException("존재하지 않는 메뉴입니다.")
+			() -> new MenuException(MenuErrorCode.NOT_EXIST, menuId)
 		);
 		return FindMenuResponse.from(menu);
 	}
