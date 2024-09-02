@@ -33,13 +33,13 @@ public class MenuService {
 	}
 
 	public Page<FindMenuResponse> findAllMenu(
-		String shop_id,
+		String shopId,
 		Pageable pageable
 	) {
 		Page<Menu> menuList = menuRepo.findByShopId
 			(
 				pageable,
-				UUID.fromString(shop_id));
+				UUID.fromString(shopId));
 		return menuList.map(FindMenuResponse::from);
 	}
 
