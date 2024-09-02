@@ -54,9 +54,6 @@ public class Shop extends Auditable {
 	@Column(nullable = false)
 	private String address;
 
-	@Column(nullable = false)
-	private boolean isPublic;
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id",
 		nullable = false,
@@ -87,7 +84,6 @@ public class Shop extends Auditable {
 		this.description = description;
 		this.status = ShopStatus.CLOSED;
 		this.address = address;
-		this.isPublic = true;
 		this.user = user;
 		this.region = region;
 	}

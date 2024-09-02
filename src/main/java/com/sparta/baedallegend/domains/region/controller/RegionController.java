@@ -19,7 +19,7 @@ public class RegionController {
 	public ResponseEntity<Void> create(@RequestBody CreateRegionRequest createRegionRequest) {
 
 		final String regionId = regionService.create(createRegionRequest);
-		return ResponseEntityUtils.created("/region/{region_id}", regionId);
+		return ResponseEntityUtils.created("/region/{regionId}", regionId);
 	}
 
 }

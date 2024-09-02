@@ -43,9 +43,6 @@ public class Menu extends Auditable {
 	private String description;
 
 	@Column(nullable = false)
-	private boolean isPublic;
-
-	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private MenuStatus menuStatus;
 
@@ -67,7 +64,6 @@ public class Menu extends Auditable {
 		this.name = name;
 		this.price = price;
 		this.description = description;
-		this.isPublic = true;
 		this.menuStatus = menuStatus;
 		this.shop = shop;
 	}
