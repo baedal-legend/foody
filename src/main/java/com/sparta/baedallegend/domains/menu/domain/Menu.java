@@ -1,6 +1,9 @@
 package com.sparta.baedallegend.domains.menu.domain;
 
+import static com.sparta.baedallegend.global.config.jpa.audit.CommonAuditFields.DEFAULT_CONDITION;
+
 import com.sparta.baedallegend.domains.shop.domain.Shop;
+import com.sparta.baedallegend.global.config.jpa.audit.Auditable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -17,12 +20,14 @@ import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SQLRestriction;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "p_menu")
-public class Menu {
+@SQLRestriction(DEFAULT_CONDITION)
+public class Menu extends Auditable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
