@@ -120,19 +120,20 @@ user > category ,region > shop  > ...
    a. 고객 회원 가입 API 실행
    b. 회원 로그인 API 실행 
 
-2. category ,region 생성
-  [docs/client/region-api.http](https://github.com/baedal-legend/foody/blob/develop/docs/client/category-api.http)
-   categorty를 생성하는 API 실행 > categoryId(UUID타입)반환 
+2. category ,region 생성  
+
+   [docs/client/region-api.http](https://github.com/baedal-legend/foody/blob/develop/docs/client/category-api.http) 
+    categorty를 생성하는 API 실행 > categoryId(UUID타입)반환  
    
-  [docs/client/region-api.http](https://github.com/baedal-legend/foody/blob/develop/docs/client/region-api.http)
+   [docs/client/region-api.http](https://github.com/baedal-legend/foody/blob/develop/docs/client/region-api.http)  
   region 을 생성하는 api 실행 > regionId(UUID타입)반환 
   
-3. shop 생성
+3. shop 생성  
    
    [docs/client/shop-api.http](https://github.com/baedal-legend/foody/blob/develop/docs/client/shop-api.http) 내에서 
-   Shop 생성 API 실행 (request body내 categoryIds 와 regionId 는 2번에서 반환 받은 Id 값 각각 사용)  
+    Shop 생성 API 실행 (request body내 categoryIds 와 regionId 는 2번에서 반환 받은 Id 값 각각 사용)  
 
-4. menu 생성
+4. menu 생성  
    
    [docs/client/menu-api.http](https://github.com/baedal-legend/foody/blob/develop/docs/client/menu-api.http) 내에서 
     Menu 생성 API 실행 (request body 내 shopId는 3번에서 반환받은 shopId 값 사용 )
