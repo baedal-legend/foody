@@ -1,0 +1,10 @@
+POST http://localhost:8080/category
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+
+{
+  "name": "멋진 카테고리",
+  "priority": 1
+}
+
+###

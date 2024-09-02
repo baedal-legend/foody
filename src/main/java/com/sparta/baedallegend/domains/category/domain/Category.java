@@ -1,5 +1,8 @@
 package com.sparta.baedallegend.domains.category.domain;
 
+import static com.sparta.baedallegend.global.config.jpa.audit.CommonAuditFields.DEFAULT_CONDITION;
+
+import com.sparta.baedallegend.global.config.jpa.audit.Auditable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +14,7 @@ import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SQLRestriction;
 
 @Entity
 @Getter
@@ -29,7 +33,8 @@ import lombok.NoArgsConstructor;
 )
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Category {
+@SQLRestriction(DEFAULT_CONDITION)
+public class Category extends Auditable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
@@ -41,5 +46,13 @@ public class Category {
 	@Column(nullable = false)
 	private int priority;
 
-	// TODO 연관관계 매핑 필요
+	public static Category of(String name, int priority) {
+		return new Category(name, priority);
+	}
+
+	private Category(String name, int priority) {
+		this.name = name;
+		this.priority = priority;
+	}
+
 }
