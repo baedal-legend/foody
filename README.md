@@ -5,7 +5,7 @@
 
 음식점들의 배달 및 포장 주문 관리, 결제, 그리고 주문 내역 관리 기능을 제공하는 플랫폼 개발
 
-##                        
+##                            
 
 ## 개발 환경 ##
 
@@ -86,14 +86,22 @@
 3.Project 빌드 및 구동
 ===
 
-1. docker-compose 구동 : `$ docker compose up -d`
-2. 서비스 빌드 : `$ ./gradlew jibDockerBuild`
+1. docker-compose 구동
 
-- 빌드 확인 : `$ docker images | grep baedal-legend`
+- `$ docker compose up -d`
 
-3. 실행 : `$ docker compose -f foody-compose.yml up -d`
+2. 서비스 빌드
 
-4. 종료 :
+- `$ ./gradlew jibDockerBuild`
+
+- 빌드 확인
+    - `$ docker images | grep baedal-legend`
+
+3. 실행
+
+- `$ docker compose -f foody-compose.yml up -d`
+
+4. 종료
 
 - `$ docker compose -f foody-compose.yml down`
 - `$ docker compose down`
